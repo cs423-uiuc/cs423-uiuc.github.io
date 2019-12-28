@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>CS 423 -- Operating System Design (Spring 2020)</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="423_logo.png">
+</head>
+
+<body class="main">
+
+    <h1>CS 423: Operating System Design</h1>
+    <h2 class="h1sub">Spring 2020</h2>
+
+    <p></p>
+    <dl>
+        <dt>
+    <b>Instructor</b>
+  </dt>
+        <dd>
+            <a href="https://tianyin.github.io" target="_blank">Tianyin Xu</a>
+            <br><a href="mailto:tyxu@illinois.edu">tyxu@illinois.edu</a>
+            <br> 4108 Siebel Center
+            <p></p>
+        </dd>
+
+        <dt><b>Lectures</b></dt>
+        <dd>
+            Tue/Thu 14:00–15:15pm
+            <br>
+            1310 Digital Computer Lab
+            <p></p>
+        </dd>
+
+        <dt><b>Teaching Assistant</b></dt>
+        <dd>
+            Jack Chen
+            <br><a href="mailto:jianyan2@illinois.edu">jianyan2@illinois.edu</a>
+            <p></p>
+        </dd>
+
+        <dt><b>Office Hours</b></dt>
+        <dd>
+            Xu: TBD or by appointment, 4108 Siebel Center
+            <br>
+            Chen: TBD, 207 Siebel Center
+            <p></p>
+        </dd>
+
+        <dt><b>Forums</b></dt>
+        <dd>
+          Piazza
+        </dd>
+    </dl>
+    <h2>Course Overview</h2>
+
+    <p>
+      This course introduces students to the next step in operating system design
+      (after CS 241 or equivalent).
+      Students will understand the main operating system functions in class and
+      analyze their implementation through a series of machine problems
+      that require modifications to operating system code.
+      Students will also be exposed to the concepts of virtual machines
+      and issues of distribution such distributed files systems
+      and map-reduce operators for distributed computation.
+      The course will conclude with a series of advanced topics.
+    </p>
+
+    <p>
+        Please contact the instructor if you have questions regarding the material or concerns about whether your background is suitable for the course.
+    </p>
+
+    <ul>
+        <li>
+            <a class="paperlink" href="schedule.html" target="_blank"><b>Schedule and Slides</b></a>
+        </li>
+        <li>
+            <a class="paperlink" href="https://compass2g.illinois.edu/" target="_blank"><b>MPs and Homeworks</b></a>
+        </li>
+    </ul>
+
+    <h2>Textbooks</h2>
+
+    <p> Course Text:
+      <ul>
+          <li>
+            Operating Systems: Principles & Practice (2nd Edition), Thomas Anderson, Michael Dahlin, 2014
+          </li>
+      </ul>
+
+    </p>
+      Much of the course will be following the above textbook, and it is recommend that you purchase
+      a copy of this book (either edition). You will be responsible for the chapters of the textbook
+      that are discussed in class. You do not strictly need the book, however;
+      any exercises you are asked to complete in the text will be made available to you on Compass2G.
+      Therefore, any of the other major operating system textbooks would be a suitable replacement if you have one around.
+    </p>
+
+  <p>Alternative Texts:</p>
+  <ul>
+      <li>
+          Operating System Concepts (9th edition), Abraham Silberschatz, Peter B. Galvin and Greg Gagne, 2012
+      </li>
+      <li>
+          Modern Operating Systems (4rd Edition), Andrew S. Tanenbaum, Prentice Hall, 2014
+      </li>
+  </ul>
+
+  <p>Optional Reading:</p>
+  <ul>
+      <li>
+          Virtual Machines, James E. Smith and Ravi Nair, Elsevier / Morgan Kaufmann, 2005
+      </li>
+      <li>
+          Linux Kernel Development (3rd Edition), Robert Love, 2010
+      </li>
+  </ul>
+
+  <p>
+      You may find the Linux Kernel Development book to be helpful when completing yours MPs.
+  </p>
+
+    <h2>Grading</h2>
+    <p>
+      The course will involve 5 machine problems, several homeworks, a midterm, and a final.
+      Unless otherwise noted by the instructor, all work in this course is to be completed independently.
+      If you are ever uncertain of how to complete an assignment,
+       you can go to office hours or engage in high-level discussions
+       about the problem with your classmates on the Piazza boards.
+    </p>
+
+    <p>
+      Grades will be assigned as follows:
+    </p>
+
+    <ul>
+        <li> <i>Machine Problems:</i> Five MPs will collectively account for 30% of the grade, divided into 2%, 7%, 7%, 7%, and 7%. <b>All MPs should be solved individually.</b> <b>No late submissions are allowed.</b></li>
+        <li> <i>Homework:</i> Homeworks account for 10% of the grade. Homeworks will be assigned sparingly. They will consist of multiple choice or short answer questions assigned on Compass2G. The first homework will test your prerequisite knowledge for the course. Another homework will be a practice exercise set for the final exam.</li>
+        <li> <i>Midterm:</i> The midterm will be worth 25% of your grade, date/time TBD.</li>
+        <li> <i>Final:</i> A final exam will be worth 25% of your grade, date/time TBD.</li>
+        <li> <i>Participation:</i> Accounts for 10%. Includes quizzes and class discussion (either in person or online).</li>
+        <li> <i>4 Credit Section Only:</i> If you are registered for the four credit version of this course, you will be required to complete and summarize weekly literature readings that are relevant to the subject matter being discussed in class. Satisfactory completion of these readings will be necessary to receive full credit in homework and participation.</li>
+    </ul>
+
+    <h2>Course Expectations</h2>
+
+    <p>
+      The expectations for the course are that students will attend every class, do any readings assigned for class, and actively and constructively participate in class discussions. Class participation will be a measure of contributing to the discourse both in class, through discussion and questions, and outside of class through contributing and responding to the Piazza forum.
+    </p>
+
+    <p>
+      Out of respect for your classmates, I ask that you turn off all laptops, tablets, and phone screens for the duration of each class!
+    </p>
+
+    <p>
+      More information about course requirements will be made available leading up to the start of classes
+    </p>
+
+    <h2>Ethics Statement</h2>
+
+    <p>
+      This course will include topics related computer security and privacy. As part of this investigation we may cover technologies whose abuse could infringe on the rights of others. As computer scientists, we rely on the ethical use of these technologies. Unethical use includes circumvention of an existing security or privacy mechanisms for any purpose, or the dissemination, promotion, or exploitation of vulnerabilities of these services. Any activity outside the letter or spirit of these guidelines will be reported to the proper authorities and may result in dismissal from the class and possibly more severe academic and legal sanctions.
+    </p>
+
+    <h2>Academic Integrity Policy</h2>
+
+    <p>
+      The University of Illinois at Urbana-Champaign Student Code should also be considered as a part of this syllabus.
+      Students should pay particular attention to Article 1, Part 4: Academic Integrity.
+      Read the Code at the following URL: <a class="paperlink" href="http://studentcode.illinois.edu/" target="_blank">http://studentcode.illinois.edu/</a>.
+    </p>
+    <p>
+      Academic dishonesty may result in a failing grade.
+      Every student is expected to review and abide by the Academic Integrity Policy:
+      <a class="paperlink" href="http://studentcode.illinois.edu/" target="_blank">http://studentcode.illinois.edu/</a>.
+      Ignorance is not an excuse for any academic dishonesty.
+      It is your responsibility to read this policy to avoid any misunderstanding.
+      Do not hesitate to ask the instructor(s) if you are ever in doubt about what constitutes plagiarism,
+      cheating, or any other breach of academic integrity.
+    </p>
+
+    <h2>Students with Disabilities</h2>
+
+    <p>
+      To obtain disability-related academic adjustments and/or auxiliary aids,
+      students with disabilities must contact the course instructor and the as soon as possible.
+      To insure that disability-related concerns are properly addressed from the beginning,
+      students with disabilities who require assistance to participate in this class should
+      contact Disability Resources and Educational Services (DRES)
+      and see the instructor as soon as possible.
+      If you need accommodations for any sort of disability,
+      please speak to me after class, or make an appointment to see me,
+      or see me during my office hours. DRES provides students with academic accommodations,
+      access, and support services.
+      To contact DRES you may visit 1207 S. Oak St., Champaign, call 333-4603 (V/TDD),
+      or e-mail a message to <a href="mailto:disability@uiuc.edu">disability@uiuc.edu</a>.
+      Please refer to <a class="paperlink" href="http://www.disability.illinois.edu/" target="_blank">http://www.disability.illinois.edu/</a>.
+    </p>
+
+    <h2>Family Educational Rights and Privacy Act (FERPA)</h2>
+    <p>
+      Emergency response recommendations can be found at the following website:
+      <a class="paperlink" href="http://police.illinois.edu/emergency-preparedness/" target="_blank">http://police.illinois.edu/emergency-preparedness/</a>.
+        I encourage you to review this website and the campus building floor plans website
+        within the first 10 days of class: <a class="paperlink" href="http://police.illinois.edu/emergency-preparedness/building-emergency-action-plans/" target="_blank">http://police.illinois.edu/emergency-preparedness/building-emergency-action-plans/</a>.
+    </p>
+
+    <h2>Students with Disabilities</h2>
+
+    <p>
+      Any student who has suppressed their directory information pursuant to
+      Family Educational Rights and Privacy Act (FERPA) should self-identify
+      to the instructor to ensure protection of the privacy of their attendance
+      in this course.
+      See <a class="paperlink" href="http://registrar.illinois.edu/ferpa" target="_blank">http://registrar.illinois.edu/ferpa</a> for more information on FERPA.
+    </p>
+
+    <h2>Credit</h2>
+
+    <p>
+      The course is designed by <a class="paperlink" href="https://adambates.org/" target="_blank">Professor Adam Bates</a>
+      who taught it during 2017--2019.
+    </p>
+
+    <div class="footer">
+        <hr><a href="mailto:tyxu@illinois.edu">tyxu@illinois.edu</a>
+    </div>
+
+</body>
+
+</html>
