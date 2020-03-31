@@ -1,0 +1,7 @@
+Hello,
+
+I am a new user of CockroachDB.
+
+Currently, I have set up a local cluster of three nodes. I noticed that the leader can be different for each range. For instance, range 1 might have node 1 as the leader, range 7 might have node 2 as the leader, and range 10 might have node 3 as the leader. Is there any way to configure the system such that there is a single node that is the leader across every range? Alternatively, is there any way to configure the system such that there is only a single range?
+
+Thank you in advance!
