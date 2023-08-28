@@ -1,6 +1,6 @@
 # CS423 Fall 2023 MP0: Setting Up a Kernel Development Environment
 
-**Assignment Due**: Sep. 13th at 11:59 PM CT
+**Assignment Due**: Sep. 12nd at 11:59 PM CT
 
 **Last Updated**: Aug. 27th
 
