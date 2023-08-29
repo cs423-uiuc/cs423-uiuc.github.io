@@ -2,7 +2,7 @@
 
 **Assignment Due**: Sep. 12nd at 11:59 PM CT
 
-**Last Updated**: Aug. 27th
+**Last Updated**: Aug. 29th
 
 This document will guide you through your MP0 for CS 423 Operating System Design.
 It will help you prepare an environment for upcoming MPs.
@@ -125,7 +125,7 @@ _**Note**: the following steps assume you are running Ubuntu 22.04._
 downloading the standard development tools (**2-5 minutes**):
 
 ```bash
-sudo apt-get install git libncurses-dev wget busybox libssl-dev libelf-dev dwarves flex bison build-essential
+sudo apt-get install git bc libncurses-dev wget busybox libssl-dev libelf-dev dwarves flex bison build-essential
 ```
 
 - Install QEMU (**1-3 minutes**):
