@@ -203,13 +203,7 @@ _**Note**: Depends on how powerful your PC is, this step may take anywhere
 from several minutes to a few hours.
 You may want to plug-in your laptop and put your PC into high performance mode if you want to make it faster._
 
-Upon successful compilation, you will have new kernel image (a file called `vmlinux`) built in your kernel directory and the following line will be printed in your console:
-
-```console
-Kernel: arch/x86/boot/bzImage is ready (#1)
-```
-
-_**Note**: The number (#1) may be different in your environment._
+Upon successful compilation, you will have new kernel image (a file called `vmlinux`) built in your kernel directory.
 
 ### Test your kernel
 
