@@ -115,7 +115,9 @@ Depends on your current operating system, you may choose one of the following VM
 
 **If you are using a VM hypervisor**:
 
-- Install VM client with Ubuntu 22.04 as your distro. You can download the distro image at https://releases.ubuntu.com/22.04.3/ubuntu-22.04.3-desktop-amd64.iso
+- Install VM client with Ubuntu 22.04 as your distro. You can download the distro image at:
+  x86: https://releases.ubuntu.com/22.04.3/ubuntu-22.04.3-desktop-amd64.iso
+  ARM: https://cdimage.ubuntu.com/jammy/daily-live/current/jammy-desktop-arm64.iso
 
 ### Prepare for Kernel Compilation
 
