@@ -37,7 +37,7 @@ This MP will require you to read, write and debug C-based kernel code in depth. 
 - You should have successfully completed MP0, as you may wish to test your kernel module using the virtual machine created in MP0.
 - You should be able to read, write and debug program codes written in C language.
 - (Recommended) You may have a code editor that supports Linux kernel module development - for example, VSCode, Neovim, or GNU Emacs.
-- (Recommended) You may use the Linux Kernel Documentation (https://www.kernel.org/doc/html/next/index.html) to search the Linux kernel documents for concepts and high-level descriptions.
+- (Recommended) You may use the Linux Kernel Documentation (https://www.kernel.org/doc/html/v5.15/index.html) to search the Linux kernel documents for concepts and high-level descriptions.
 - (Recommended) You may use the Elixir Cross Referencer (https://elixir.bootlin.com/linux/v5.15.127/source) to search the Linux kernel codebase for function definitions and use cases.
 
 ### Introduction
@@ -52,7 +52,7 @@ Kernel Programming has some particularities that can make it more difficult to d
 
 4. Last but not least, Linux Kernel disallows the use of floating-point types and operations. That is all the math must be implemented using integer types (i.e. `int`, `long`, or `char`).
 
-Through the rest of the document and your implementation you will learn some of the basic mechanisms, structures and designs common to many areas of Linux Kernel Development. If you feel lost, the best thing to do is to check the Linux Kernel Documentation (https://www.kernel.org/doc/html/next/index.html) or the Elixir Cross Referencer (https://elixir.bootlin.com/linux/v5.15.127/source) - they are your most useful encyclopedia and dictionary in kernel development. Also, Stack Overflow, LWN.net and O'Reilly Media can sometimes provide you with some useful information.
+Through the rest of the document and your implementation you will learn some of the basic mechanisms, structures and designs common to many areas of Linux Kernel Development. If you feel lost, the best thing to do is to check the Linux Kernel Documentation (https://www.kernel.org/doc/html/v5.15/index.html) or the Elixir Cross Referencer (https://elixir.bootlin.com/linux/v5.15.127/source) - they are your most useful encyclopedia and dictionary in kernel development. Also, Stack Overflow, LWN.net and O'Reilly Media can sometimes provide you with some useful information.
 
 # Problem Description
 
@@ -71,6 +71,7 @@ Grading Criteria (**Total Possible Points: 100%**):
    ```console
    <PID1>: <CPU Time of PID1>
    <PID2>: <CPU Time of PID2>
+   ...
    ```
 
    For example:
@@ -78,6 +79,7 @@ Grading Criteria (**Total Possible Points: 100%**):
    ```console
    423: 10002
    523: 99999
+   623: 1002222
    ```
 
 5. The kernel module should keep the list of registered process and their user time in memory and update them every 5 seconds.
@@ -162,7 +164,7 @@ flowchart TB
 
 Please note that the code quality of each MP will also affect your grade. In MP1, code quality accounts for 10% of the total score.
 
-You can read about the Linux Kernel's requirements for code quality here: https://www.kernel.org/doc/html/v4.10/process/4.Coding.html
+You can read about the Linux Kernel's requirements for code quality here: https://www.kernel.org/doc/html/v5.15/process/4.Coding.html
 
 For MP, we use a relaxed version of the Kernel Code Quality Guideline for grading. For example, we require:
 
@@ -174,7 +176,7 @@ For MP, we use a relaxed version of the Kernel Code Quality Guideline for gradin
 
 We DO NOT require, but encourage you to:
 
-- Follow the kernel's code styling guideline (https://www.kernel.org/doc/Documentation/process/coding-style.rst)
+- Follow the kernel's code styling guideline (https://www.kernel.org/doc/html/v5.15/process/coding-style.html)
 - Compile your code with `-W` / `-Wall` flag.
 
 Here are some advices:
