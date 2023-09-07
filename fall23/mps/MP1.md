@@ -64,9 +64,9 @@ Grading Criteria (**Total Possible Points: 100%**):
 
 2. Create a file in the Proc Filesystem. This file is the interface for user programs to interact with your kernel module. You must use the Kernel Proc Filesystem API to create the file and handle read/write requests. The Proc file should be available at `/proc/mp1/status`. It should be readable and writable by anyone (file permission should be 0666). (interfaces defined in `linux/proc_fs.h`) (**10%**)
 
-3. When a process writes a PID (Process Identifier) into the Proc file, the process corresponding to the PID should be registered in the module for User Space CPU Time measurement. Multiple PIDs may be registered. The written message with have the following format: `"<pid>"` (e.g. `"423"`). (**5%**)
+3. When a process writes a PID (Process Identifier) into the Proc file, the process corresponding to the PID should be registered in the module for User Space CPU Time measurement. Multiple PIDs may be registered. The written message be a decimal string, which contains the PID. (**10%**)
 
-4. When a process reads the Proc file, the file should return a list of registered processes together with their corresponding User Space CPU Time (known also as user time), with the following format: (**5%**)
+4. When a process reads the Proc file, the file should return a list of registered processes together with their corresponding User Space CPU Time (known also as user time), with the following format: (**10%**)
 
    ```console
    <PID1>: <CPU Time of PID1>
@@ -84,18 +84,17 @@ Grading Criteria (**Total Possible Points: 100%**):
 
    1. You must use Kernel Linked List to implement the list and add/remove/iteration functionalities. (interfaces defined in `linux/list.h`) (**10%**)
    2. You must use the Kernel Timer to implement the periodic update functionality. (interfaces defined in `linux/timer.h`) (**10%**)
-   3. You must use the Two-Halves Approach to handle the timer interrupt, and implement it using Kernel Workqueue. Which means when your timer is fired, you timer callback function should use Kernel Workqueue to schedule an user time update work (Top-Half). The user time update work should, when exiting the Workqueue, iterate the registered process list and update the user time (Bottom-Half). (interfaces defined in `linux/workqueue.h`) (**10%**)
-   4. You must use Kernel Mutexes to protect your process list from any race condition. (interfaces defined in `linux/mutex.h`) (**10%**)
+   3. You must use the Two-Halves Approach to handle the timer interrupt, and implement it using Kernel Workqueue. Which means when your timer is fired, you timer callback function should use Kernel Workqueue to schedule an user time update work (Top-Half). The user time update work should, when exiting the Workqueue, iterate the registered process list and update the user time (Bottom-Half). (interfaces defined in `linux/workqueue.h`) (**5%**)
+   4. You must use Kernel Mutexes to protect your process list from any race condition. (interfaces defined in `linux/mutex.h`) (**5%**)
    5. You must use Kernel Slab Allocator to allocate and free memory. (interfaces defined in `linux/slab.h`) (**5%**)
-   6. It is acceptable for your work function to be scheduled even if there are no registered processes.
+   6. Your kernel module should be able to detect the liveness of processes and remove dead/exited processes from the registered process list. (**5%**)
+   7. It is acceptable for your work function to be scheduled even if there are no registered processes.
 
-6. Your kernel module should be able to detect the liveness of processes and remove dead/exited processes from the registered process list. (**10%**)
+6. Your kernel module should be able to release all the resources it acquired and exit gracefully when being unloaded.  (**10%**)
 
-7. Your kernel module should be able to release all the resources it acquired and exit gracefully when being unloaded.  (**10%**)
+7. Your code is well commented, readable, warning-free, has a completed README file, and follows software engineering principles. (**10%**)
 
-8. Your code is well commented, readable, warning-free, has a completed README file, and follows software engineering principles. (**10%**)
-
-9. Your user-space program can register itself using the Proc file exposed by your kernel module. It should spend about 10-15 second on some calculations, read the Proc file and print the content it read, and then exit. (**5%**)
+8. Your user-space program can register itself using the Proc file exposed by your kernel module. It should spend about 10-15 second on some calculations, read the Proc file and print the content it read, and then exit. (**10%**)
 
 # Implementation Challenges
 
