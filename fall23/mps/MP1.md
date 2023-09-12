@@ -191,6 +191,57 @@ Here are some advices:
 
 - Finally, in kernel programming, the use of the `goto` statement is a common practice. A good example of this, is the implementation of the Linux scheduler function `schedule()`. In this case, the use of the `goto` statement improves readability and/or performance. “Spaghetti code” is never a good practice.
 
+# Compile and Test Your Code
+
+Despite the best option to compile the kernel module is to do it in your MP0 VM, if you find building it takes too long, you may considering modifying the Makefile and build your module on your host Linux machine.
+
+If you want to compile the kernel module outside of the MP0 VM, you may edit the Makefile to point to the correct kernel folder:
+
+```Makefile
+obj-m += mp1.o
+
+all:
+        make -C <PATH_TO_YOUR_5.15.127_KERNEL> M=$(PWD) modules
+        gcc -o userapp userapp.c
+
+clean:
+        make -C <PATH_TO_YOUR_5.15.127_KERNEL> M=$(PWD) clean
+        $(RM) userapp
+```
+
+For example:
+
+```Makefile
+obj-m += mp1.o
+
+all:
+        make -C ~/linux-5.15.127 M=$(PWD) modules
+        gcc -o userapp userapp.c
+
+clean:
+        make -C ~/linux-5.15.127 M=$(PWD) clean
+        $(RM) userapp
+```
+
+To test your kernel module, you can try loading, unloading, and running it in the MP0 VM. The following commands may be helpful:
+
+```command
+# inserting kernel module
+insmod mp1.ko
+
+# removing kernel module
+rmmod mp1.ko
+
+# registering PID 1 to the module
+echo "1" > /proc/mp1/status
+
+# listing current processes and user times
+cat /proc/mp1/status
+
+# print the kernel debug/printed messages
+dmesg
+```
+
 # Submit Your Result
 
 Here are the steps to accept and submit your MP.
