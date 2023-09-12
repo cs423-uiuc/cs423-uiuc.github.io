@@ -16,6 +16,7 @@ This MP will require you to read, write and debug C-based kernel code in depth. 
 * [Implementation Challenges](#implementation-challenges)
 * [Implementation Overview](#implementation-overview)
 * [Note on Code Quality](#note-on-code-quality)
+* [Compile and Test Your Code](#compile-and-test-your-code)
 * [Submit Your Result](#submit-your-result)
 
 # Overview 
