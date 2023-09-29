@@ -4,6 +4,10 @@
 
 **Last Updated**: Sep. 29th
 
+This document will guide you through your MP2 for CS 423 Operating System Design. In this MP, you will learn how to create a simple Linux kernel scheduler from sketch.
+
+This MP will require you to read, write and debug C-based kernel code in depth. It may take you **several days** (probably more than MP1) to complete.
+
 # Table of Contents
 
 - [CS423 Fall 2023 MP2: Rate-Monotonic CPU Scheduling](#cs423-fall-2023-mp2-rate-monotonic-cpu-scheduling)
@@ -152,6 +156,12 @@ Additionally, an application running in the system should be able to query which
 <pid 2>: <period 2>, <processing time 2>
 ...
 <pid n>: <period n>, <processing time n>
+```
+For example:
+```
+401: 100000, 423
+400: 200000, 523
+404: 150000, 416
 ```
 
 You will also develop a simple test application for our scheduler. This application will be a single-threaded periodic application with individual jobs doing some computations. It must do the following in order:
