@@ -290,8 +290,8 @@ In Steps 6 and 7 we will implement the wake up and preemption mechanisms. Before
 
 We will have a kernel thread (*dispatching thread*) that is responsible for triggering the context switches as needed. The dispatching thread will sleep the rest of the time. There will be two cases in which a context switch will occur:
 
-1. After receiving a YIELD message from the application
-2. After the wakeup timer of the task expires.
+- After receiving a YIELD message from the application
+- After the wakeup timer of the task expires.
 
 When the Proc filesystem callback receives a YIELD message, it should put the associated application to sleep and setup the wakeup timer. Also it should change the task state to SLEEPING. When the wakeup timer expires, the timer interrupt handler should change the state of the task to READY and should wake up the dispatching thread. *The timer interrupt handler must not wake up the application!*
 
