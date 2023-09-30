@@ -161,7 +161,9 @@ For example:
 404: 150000, 416
 ```
 
-You will also develop a simple test application for our scheduler. This application will be a single-threaded periodic application with individual jobs doing some computations. It must do the following in order:
+We will also craft a simple test application for our scheduler. This application will be a single-threaded periodic app with jobs dedicated to calculating factorials. This periodic app should register with the scheduler (via admission control). It must specify its scheduling parameters during registration: the job Period and Processing Time, both given in **milliseconds**.
+
+Upon registration, the application should read the Proc filesystem entry to confirm its PID is listed, indicating acceptance. Following this, it should notify the scheduler of its readiness to commence by dispatching a YIELD message via the Proc filesystem. The app should then initiate the Real-Time Loop and start executing the periodic jobs. One job is analogous to one iteration of the Real-Time Loop. At the loop's conclusion, post completion of all periodic jobs, the app must de-register. This is done using the Proc filesystem. 
 
 1. This periodic application must register itself with the scheduler (through admission control). During the registration process, it must specify its scheduling parameters: The Period of the jobs expressed in milliseconds and Processing Time of each job also expressed in milliseconds.
 
@@ -172,12 +174,6 @@ You will also develop a simple test application for our scheduler. This applicat
 4. Then the application must initiate the Real-Time Loop, and begin the execution of the periodic jobs. One job is equivalent to one iteration of the Real-Time Loop. After each job, the process should yield via `/proc/mp2/status`.
 
 5. At the end of the Real-Time Loop, the application must de-register itself after finishing all its periodic jobs via `/proc/mp2/status`.
-
-Reading the entry `/proc/mp2/status` by an application should make the kernel module return a list detailing the PID, Period, and Processing Time for each app.
-
-We will also craft a simple test application for our scheduler. This application will be a single-threaded periodic app with jobs dedicated to calculating factorials. This periodic app should register with the scheduler (via admission control). It must specify its scheduling parameters during registration: the job Period and Processing Time, both given in **milliseconds**.
-
-Upon registration, the application should read the Proc filesystem entry to confirm its PID is listed, indicating acceptance. Following this, it should notify the scheduler of its readiness to commence by dispatching a YIELD message via the Proc filesystem. The app should then initiate the Real-Time Loop and start executing the periodic jobs. One job is analogous to one iteration of the Real-Time Loop. At the loop's conclusion, post completion of all periodic jobs, the app must de-register. This is done using the Proc filesystem. 
 
 Here's the **pseudo code** for the Periodic Application:
 
@@ -215,7 +211,6 @@ Additionally, your application can perform simple computations; calculating the 
 Scheduling typically encounters three pivotal challenges that must synchronize; else, there might be occurrences of zombie processes or processes disobeying the RMS policy:
 
 1. **First Challenge**: It involves waking your application when it's ready to run. Rate Monotonic upholds a strict release policy, not allowing the job of any application to run before its period. Hence, the application *must sleep until the beginning of the period without any busy waiting*, avoiding the waste of valuable resources. Consequently, our applications will exhibit various states in the kernel:
-
    - **READY**: The application has reached the beginning of the period, and a new job is ready to be scheduled.
    - **RUNNING**: The application is currently executing a job and using the CPU.
    - **SLEEPING**: The application has completed the job for the current period and is awaiting the next one.
@@ -283,7 +278,7 @@ You should augment the Process Control Block (PCB). We are not going to directly
 
    Create a new struct and add a pointer of type struct task_struct. In Linux, this is the data structure that represents the PCB and it is defined in `linux/sched.h`. Also, we recommend you index your list by PID. To obtain the task_struct associated with a given PID, we have provided you with a helper function in `mp2_given.h`.
 
-   Add any other information you need to keep the current state of the task, including the period, the processing time, a wake-up timer for the task, etc. Your data structure should look something like this:
+   Add any other information you need to keep the current state of the task, including the period, the processing time, a wake-up timer for the task, etc. Your data structure may look something like this:
 
 ```c
 struct mp2_task_struct {
@@ -356,7 +351,7 @@ Now we should implement the wake up timer handler. As mentioned before the handl
 
 #### 7. Implementing the YIELD Handler
 
-In this step we will implement the YIELD handler function from the Proc filesystem callback that we left blank from Step 2. In this function we need to change the state of the calling task to SLEEPING. We need to calculate the next release time (that is the beginning of the next period), we must set the timer and we must put the task to sleep as `TASK_UNINTERRUPTIBLE`.
+In this step we will implement the YIELD handler function from the Proc filesystem callback that we left blank from Step 2. In this function we need to change the state of the calling task to SLEEPING. We need to calculate the next release time (that is the beginning of the next period), we must set the timer and we must put the task to sleep as `TASK_UNINTERRUPTIBLE`. You can use the macro `set_current_state(TASK_UNINTERRUPTIBLE)` to change the state of current task.
 
 Please note that you must only set the timer and put the task to sleep if the next period has not started yet. If you set a timer with a negative value the two's complement notation of signed numbers will result in a too large unsigned number and the task will freeze.
 
@@ -367,9 +362,7 @@ You should now implement the admission control. The admission control should che
 
 The utilization bound-based admission method establishes that a task set is schedulable if the following equation is true:
 
-\[
-\sum_{i \in T}~\frac{C_i}{P_i} \leq 0.693
-\]
+\[\sum_{i \in T}~\frac{C_i}{P_i} \leq 0.693\]
 
 Where \( T \) is the set of all tasks in the system including the task to be admitted, \( C_i \) is the Processing Time used per period \( P_i \) for the \( i \)-th task in the system.
 
@@ -377,7 +370,7 @@ Where \( T \) is the set of all tasks in the system including the task to be adm
 
 #### 9. Memory De-allocation
 
-You should go back and make sure that you are properly destroying and de-allocating all the memory. This is especially true for the module exit function. For this MP you do not have to worry about tasks that do not perform de-registration
+You should go back and make sure that you are properly destroying and de-allocating all the memory. This is especially true for the module exit function. For this MP you do not have to worry about tasks that do not perform de-registration. You can assume all the tasks behave well.
 
 #### 10. Testing
 
