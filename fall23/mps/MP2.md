@@ -366,9 +366,9 @@ The utilization bound-based admission method establishes that a task set is sche
 \sum_{i \in T}~\frac{C_i}{P_i} \leq 0.693
 $$ --> 
 
-<div align="center"><img style="background: white;" src="../../svg/lVKaqRnyzH.svg"></div>
+<div align="center"><img src="../../svg/lVKaqRnyzH.svg"></div>
 
-Where *T*  is the set of all tasks in the system including the task to be admitted, $C_i$ is the Processing Time used per period $ P_i $ for the $ i $-th task in the system.
+Where *T*  is the set of all tasks in the system including the task to be admitted, $C_i$ is the Processing Time used per period $P_i$ for the $i$-th task in the system.
 
 **To implement admission control or any time computation do not use Floating-Point.** Floating-Point support is very expensive in the kernel and should be avoided at all cost. Instead use Fixed-Point arithmetic implemented through integers.
 
