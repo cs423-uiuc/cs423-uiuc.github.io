@@ -362,7 +362,9 @@ You should now implement the admission control. The admission control should che
 
 The utilization bound-based admission method establishes that a task set is schedulable if the following equation is true:
 
-\[\sum_{i \in T}~\frac{C_i}{P_i} \leq 0.693\]
+$$
+\sum_{i \in T}~\frac{C_i}{P_i} \leq 0.693
+$$
 
 Where \( T \) is the set of all tasks in the system including the task to be admitted, \( C_i \) is the Processing Time used per period \( P_i \) for the \( i \)-th task in the system.
 
