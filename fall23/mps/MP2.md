@@ -420,7 +420,7 @@ Here are some advices:
 
 Here are the steps to accept and submit your MP.
 
-- Open the link https://classroom.github.com/classrooms and login using your GitHub account.
+- Open the link [classrooms](https://classroom.github.com/a/eFhgTmgw) and login using your GitHub account.
 - Find your name in the student list and click it to accept the assignment. Please double-check your name and email address before accepting the assignment (If you choose other’s name by mistake, please contact TA).
 - A repo named `cs423-uiuc/mp2-<GitHubID>` will be automatically created for you with the starter code in it.
 - Your kernel module must be compiled to `mp2.ko`, and your test application must be compiled to `userapp`. Push your code to your repo before the deadline. We will grade your last commit before the deadline. 
