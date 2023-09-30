@@ -13,7 +13,6 @@ This MP will require you to read, write and debug C-based kernel code in depth. 
 - [CS423 Fall 2023 MP2: Rate-Monotonic CPU Scheduling](#cs423-fall-2023-mp2-rate-monotonic-cpu-scheduling)
 - [Table of Contents](#table-of-contents)
 - [Overview](#overview)
-    - [Goals](#goals)
 - [Before you start](#before-you-start)
     - [What you need](#what-you-need)
     - [Compile and Test Your Code](#compile-and-test-your-code)
@@ -38,8 +37,6 @@ This MP will require you to read, write and debug C-based kernel code in depth. 
 - [Grading Criteria](#grading-criteria)
 
 # Overview
-
-### Goals
 
 - In this MP you will learn the basics of Real-Time CPU Scheduling
 - You will develop a Rate Monotonic Scheduler for Linux using Linux Kernel Modules
@@ -226,12 +223,40 @@ Scheduling typically encounters three pivotal challenges that must synchronize; 
 3. **Third Challenge**: It is about preempting an application that has completed its current job. For this, it’s assumed that the application always behaves correctly and notifies the scheduler upon completing its job for the current period. After receiving a YIELD message from the Proc filesystem, the RMS scheduler must put the application to sleep until the next period. This involves setting up a timer and preempting the CPU to the next READY application with the highest priority.
 
 Considering these challenges, it is evident that the Process Control Block of each task needs augmenting, including the application state **(READY, SLEEPING, RUNNING)**, a wake-up timer, and the task’s scheduling parameters, including the application period (denoting priority in RMS). The scheduler also needs to maintain a list or a run queue of all the registered tasks, enabling the selection of the correct task to schedule during any preemption point. An *additional challenge* is minimizing performance overhead in the CPU scheduler. Avoid Floating Point arithmetic as it's resource-intensive.
-[![MP2 Architecture Overview](figs/figure2.png)](figs/figure2.png)
-*Figure: MP2 Architecture Overview*
+<!-- [![MP2 Architecture Overview](figs/figure2.png)](figs/figure2.png) -->
+
+
+```mermaid
+flowchart TB
+    subgraph User Space
+        writepid("Register self PID to /proc/mp2/status")
+        --"Then"-->yield_user("YIELD Function")
+        --"Workload few seconds"-->yield_user
+        --"Work finished"-->deregister("Deregister from /proc/mp2/status")
+    end
+
+    subgraph Kernel Space
+        list--"Registered Processes"<-->read_proc("Proc File Read Callback")
+        write_proc--"Check Deadline Miss"-->admission("Admission Control")--"Accept/Reject"-->list("List of Registered Processes (Critical Section)")
+        write_proc("Proc File Write Callback")--"Deregistration"-->list
+        write_proc-->yield("YIELD Function Handler")--"Change Running State"-->dispatch
+
+        dispatch("Dispatching Thread")--"Find next task"<-->list
+        timer("Timer Callback")--"Wake Up"-->dispatch
+        dispatch--"Schedule API"-->sched("Linux Scheduler")
+
+    end
+
+    read_proc--"Read results"-->readpid("Read /proc/mp2/status and print to screen")
+    writepid --"Register itself to"-->write_proc
+    yield_user--"YIELD"-->write_proc
+    deregister--"Deregister itself from"-->write_proc
+```
+*Figure 2: MP2 Architecture Overview*
 
 ## Implementation Overview
 
-In this section, we will guide you through the implementation process. [Figure 2](#figure2) shows the basic architecture of our scheduler.
+In this section, we will guide you through the implementation process. Figure 2 shows the basic architecture of our scheduler.
 
 #### 1. Start
 
