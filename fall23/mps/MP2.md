@@ -59,9 +59,7 @@ This MP will require you to read, write and debug C-based kernel code in depth. 
 
 ### Compile and Test Your Code
 
-Despite the best option to compile the kernel module is to do it in your MP0 VM, if you find building it takes too long, you may considering modifying the Makefile and build your module on your host Linux machine.
-
-If you want to compile the kernel module outside of the MP0 VM, you may edit the Makefile to point to the correct kernel folder:
+You need to edit the Makefile to point to the correct kernel folder:
 
 ```Makefile
 KERNEL_SRC:= <PATH_TO_YOUR_5.15.127_KERNEL>
