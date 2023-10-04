@@ -2,7 +2,7 @@
 
 **Assignment Due**: Oct. 19th at 11:59 PM CT
 
-**Last Updated**: Sep. 29th
+**Last Updated**: Oct. 04th
 
 This document will guide you through your MP2 for CS 423 Operating System Design. In this MP, you will learn how to create a simple Linux kernel scheduler from sketch.
 
