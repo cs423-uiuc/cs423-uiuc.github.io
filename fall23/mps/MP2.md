@@ -326,6 +326,8 @@ To handle the context switches and the preemption, you will use the scheduler AP
 You can use the functions `set_current_state()` and `schedule()` to get the dispatching thread to sleep. For the new running task, the dispatching thread should execute the following code:
 
 ```c
+#include <uapi/linux/sched/types.h>
+
 struct sched_attr attr;
 wake_up_process(task);
 attr.sched_policy = SCHED_FIFO;
