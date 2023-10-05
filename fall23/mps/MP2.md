@@ -178,25 +178,25 @@ Here's the **pseudo code** for the Periodic Application:
 ```c
 void main(void) 
 {   // Interact with Proc filesystem
-    REGISTER(PID, Period, JobProcessTime); 
+    REGISTER(pid, period, processing_time);
     // Read ProcFS: Verify the process was admitted 
     list = READ(ProcFS); 
     if (!process in the list) exit(1);
     // setup everything needed for RT loop
-    t0=gettimeofday()
+    t0 = clock_gettime();
     // Proc filesystem
     YIELD(PID); 
     // this is the real-time loop
     while (exist jobs)
     {
-       wakeup_time = gettimeofday() - t0;
+       wakeup_time = clock_gettime() - t0;
        // factorial computation
-       do_job(); 
-       // ProcFS JobProcessTime=gettimeofday() - wakeup_time 
+       do_job();
+       process_time = clock_gettime() - wakeup_time;
        YIELD(PID); 
     }
     // Interact with ProcFS
-    UNREGISTER(PID); 
+    DEREGISTER(PID); 
 }
 ```
 
