@@ -350,13 +350,13 @@ We recommend you keep a global variable with the current running task (`struct m
 
 Now we should implement the wake up timer handler. As mentioned before the handler, should change the state of the task to READY and should wake up the dispatching thread. You can think of this mechanism as a two-halves where the top half is the wake-up timer handler and the bottom half is the dispatching thread.
 
+According to your own implementation needs, consider whether to wake up the dispatching thread during the de-registration.
 
 #### 7. Implementing the YIELD Handler
 
 In this step we will implement the YIELD handler function from the Proc filesystem callback that we left blank from Step 2. In this function we need to change the state of the calling task to SLEEPING. We need to calculate the next release time (that is the beginning of the next period), we must set the timer and we must put the task to sleep as `TASK_UNINTERRUPTIBLE`. You can use the macro `set_current_state(TASK_UNINTERRUPTIBLE)` to change the state of current task.
 
 Please note that you must only set the timer and put the task to sleep if the next period has not started yet. If you set a timer with a negative value the two's complement notation of signed numbers will result in a too large unsigned number and the task will freeze.
-
 
 #### 8. Implementing Admission Control
 
