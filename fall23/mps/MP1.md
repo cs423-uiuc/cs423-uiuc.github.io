@@ -1,6 +1,6 @@
 # CS423 Fall 2023 MP1: Introduction to Linux Kernel Programming
 
-**Assignment Due**: Sep. 28th at 11:59 PM CT
+**Assignment Due**: Sep. 29th at 11:59 PM CT
 
 **Last Updated**: Sep. 7th
 
