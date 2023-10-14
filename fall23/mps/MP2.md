@@ -318,7 +318,7 @@ In Step 6 we will implement the dispatching thread and the kernel mechanism. In 
 
 Let's start by implementing the dispatching thread. As soon as the context switch wakes up, you will need to find in the list, **the task has the highest priority (that is the shortest period)**. Then you need to preempt the currently running task (if any) and context switch to the chosen task. If the new task **doesn't have a higher priority** than the currently running task, then you should not preempt the currently running task and keep the new task in the READY state.
 
-If there are no tasks in READY state we should simply preempt the currently running task. The task state of the old task must be set to READY only if the state is RUNNING. This is because we will previously set the state of the old task to SLEEPING in the YIELD handler function. Also you must set the state of the new running task to RUNNING.
+If there are no tasks in the READY state, just preempt the current task. Set the old running task's state to READY only if it's in the RUNNING state and the job isn't finished. This is because we only set the old task's state to SLEEPING in the YIELD handler function when the job is complete. Also, make sure to set the state of the newly active task to RUNNING.
 
 To handle the context switches and the preemption, you will use the scheduler API based on some known behavior of the Linux scheduler. We know that any task running on the `SCHED_FIFO` will hold the CPU for as long as the application needs. So you can trigger a context switch by using the function `sched_setattr_nocheck`.
 
