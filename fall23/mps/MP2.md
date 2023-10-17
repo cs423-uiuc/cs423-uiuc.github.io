@@ -2,7 +2,7 @@
 
 **Assignment Due**: Oct. 19th at 11:59 PM CT
 
-**Last Updated**: Oct. 09th
+**Last Updated**: Oct. 13th
 
 This document will guide you through your MP2 for CS 423 Operating System Design. In this MP, you will learn how to create a simple Linux kernel scheduler from sketch.
 
@@ -293,10 +293,9 @@ Now you should be able to implement *registration*. Do not worry about admission
 
 In this function you must allocate and initialize a new `mp2_task_struct`. We will use the slab allocator for memory allocation of the `mp2_task_struct`. The slab allocator is an allocation caching layer that improves allocation performance and reduces memory fragmentation in scenarios that require intensive allocation and deallocation of objects of the same size (e.g creation of a new PCB after a `fork()`). As part of your kernel module initialization you must create a new cache of size `sizeof(mp2_task_struct)`. This new cache will be used by the registration function to allocate a new instance of `mp2_task_struct`.
 
-The registration function must initialize `mp2_task_struct`. We will initialize the task in SLEEPING state. However, we will let the task run until the application reaches the YIELD message as indicated by the Real-Time Loop. Until we reach the Real-Time loop we do not enforce any scheduling. You will need then to insert this new structure into the list of tasks. This step is very similar to what you did in MP1.
+The registration function must initialize `mp2_task_struct`. We will initialize the task in SLEEPING state. However, we will let the task run until the application reaches the YIELD message as indicated by the Real-Time Loop. Until we reach the Real-Time loop, we do not enforce any scheduling. In the registration function, You will also need to insert this new structure into the list of tasks. This step is very similar to what you did in MP1. For repeated PIDs, consider logging an error message in the kernel log, although it's optional, and then dismiss the registration request.
 
-As part of this step you should also implement the Read callback of the Proc Filesystem entry.
-
+As part of this step you should also implement the Read callback of the Proc Filesystem entry. 
 
 #### 5. De-registration
 
@@ -319,7 +318,7 @@ In Step 6 we will implement the dispatching thread and the kernel mechanism. In 
 
 Let's start by implementing the dispatching thread. As soon as the context switch wakes up, you will need to find in the list, **the task has the highest priority (that is the shortest period)**. Then you need to preempt the currently running task (if any) and context switch to the chosen task. If the new task **doesn't have a higher priority** than the currently running task, then you should not preempt the currently running task and keep the new task in the READY state.
 
-If there are no tasks in READY state we should simply preempt the currently running task. The task state of the old task must be set to READY only if the state is RUNNING. This is because we will previously set the state of the old task to SLEEPING in the YIELD handler function. Also you must set the state of the new running task to RUNNING.
+If there are no tasks in the READY state, just preempt the current task. Set the old running task's state to READY only if it's in the RUNNING state and the job isn't finished. This is because we only set the old task's state to SLEEPING in the YIELD handler function when the job is complete. Also, make sure to set the state of the newly active task to RUNNING.
 
 To handle the context switches and the preemption, you will use the scheduler API based on some known behavior of the Linux scheduler. We know that any task running on the `SCHED_FIFO` will hold the CPU for as long as the application needs. So you can trigger a context switch by using the function `sched_setattr_nocheck`.
 
