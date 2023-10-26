@@ -195,7 +195,7 @@ contiguous memory is scarce, **we require you to use `vmalloc()` as part of this
 be larger than or equal to 128 x 4 kilobytes. In order to disable management of allocated pages by the virtual memory
 system, the PG_reserved bit needs to be set.
 
-6) Your kernel module will use a delayed work queue (alternatively you can use a timer and a kernel thread) that
+6) Your kernel module will use a delayed work queue <!-- (alternatively you can use a timer and a kernel thread) --> that
 periodically measures the major and minor page fault counts, and CPU utilization of all registered user processes
 and saves the measured information to the memory buffer. We have provided the function `get_cpu_use()` in
 `mp3_given.h` that returns the number of major and minor page faults and CPU utilization in expressed in jiffies.
@@ -367,12 +367,19 @@ Please upload the README to your GitHub repo with filename `README.md`.
 
 ### 9 References
 
-1. Character device registration (new interface for Linux v2.6),http://www.makelinux.net/ldd3/chp-3sect-
-2. Linux kernel module programming, Chapter 4 Character Device Drivers (an old interface), Available athttp:
+1. Workqueue interface and documentation, https://elixir.bootlin.com/linux/v5.15.127/source/include/linux/workqueue.h
+2. Char device interface, https://elixir.bootlin.com/linux/v5.15.127/source/include/linux/cdev.h and its file operations
+   https://elixir.bootlin.com/linux/v5.15.127/source/include/linux/fs.h#L2011
+3. vmalloc, https://elixir.bootlin.com/linux/v5.15.127/source/include/linux/vmalloc.h#L146
+4. Get page frame number from vmalloc, https://elixir.bootlin.com/linux/v5.15.127/source/include/linux/mm.h#L775
+5. Remap pfn, https://elixir.bootlin.com/linux/v5.15.127/source/include/linux/mm.h#L2800
+
+<!-- 6. Character device registration (new interface for Linux v2.6),http://www.makelinux.net/ldd3/chp-3sect-
+7. Linux kernel module programming, Chapter 4 Character Device Drivers (an old interface), Available athttp:
     //tldp.org/LDP/lkmpg/2.6/html/x569.html
-3. Linux Device Driver, Chapter 15 Memory Mapping and DMA, Available athttp://www.davehylands.com/
+8. Linux Device Driver, Chapter 15 Memory Mapping and DMA, Available athttp://www.davehylands.com/
     Misc/Linux-Device-Drivers-3rd-Edition.pdf
-4. Work Queue Tutorial 1,http://www.linuxjournal.com/article/6916?page=0,
+9. Work Queue Tutorial 1,http://www.linuxjournal.com/article/6916?page=0,
 
 
 5. Work Queue Tutorial 2,http://www.ibm.com/developerworks/linux/library/l-tasklets/index.
@@ -385,6 +392,6 @@ Please upload the README to your GitHub repo with filename `README.md`.
 10. Access the Linux Kernel using the Proc Filesystem,http://www.ibm.com/developerworks/linux/
 library/l-proc/index.html
 11. Linux kernel threads-a simple introduction,http://kerneltrap.org/node/
-12. Love Robert, Linux Kernel Development, Chapters 3, 4, 6, 9-11, 17-18, Addison-Wesley Professional, Third Edition
+12. Love Robert, Linux Kernel Development, Chapters 3, 4, 6, 9-11, 17-18, Addison-Wesley Professional, Third Edition -->
 
 
