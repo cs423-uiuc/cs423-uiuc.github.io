@@ -4,6 +4,88 @@
 
 **Last Updated**: Oct. 26th
 
+Table of Contents
+- [CS423 Fall 2023 MP3: Virtual Memory Page Fault Profiler](#cs423-fall-2023-mp3-virtual-memory-page-fault-profiler)
+  - [Before you start](#before-you-start)
+    - [What you need](#what-you-need)
+    - [Compile and Test Your Code](#compile-and-test-your-code)
+  - [1 Goals and Overview](#1-goals-and-overview)
+  - [2 Introduction](#2-introduction)
+    - [3 Problem Description](#3-problem-description)
+    - [4 Implementation Overview](#4-implementation-overview)
+    - [5 Analysis](#5-analysis)
+      - [5.1 Case Study 1: Thrasing and Locality.](#51-case-study-1-thrasing-and-locality)
+      - [5.2 Case Study 2. Multiprogramming](#52-case-study-2-multiprogramming)
+    - [6 Software Engineering](#6-software-engineering)
+    - [7 Submission Instructions](#7-submission-instructions)
+    - [8 Grading Criteria](#8-grading-criteria)
+    - [9 References](#9-references)
+
+## Before you start
+
+### What you need
+
+- You should have successfully completed MP1 and MP2. MP3 will use prof filesystem and list introduced in MP1.
+- You should be able to read, write and debug program codes written in C language.
+- (Recommended) You may have a code editor that supports Linux kernel module development - for example, VSCode, Neovim, or GNU Emacs (or Nano).
+- (Recommended) You may use the [Linux Kernel Documentation](https://www.kernel.org/doc/html/v5.15/index.html) to search the Linux kernel documents for concepts and high-level descriptions.
+- (Recommended) You may use the [Elixir Cross Referencer](https://elixir.bootlin.com/linux/v5.15.127/source) to search the Linux kernel codebase for function definitions and use cases.
+
+
+### Compile and Test Your Code
+
+You need to edit the Makefile to point to the correct kernel folder:
+
+```Makefile
+CFLAGS_MODULE += -Wno-declaration-after-statement -Werror
+APP_CFLAGS = -std=c11 -pipe -O2 -Werror
+
+KERNEL_SRC:= <PATH_TO_YOUR_5.15.127_KERNEL>
+SUBDIR := $(PWD)
+
+CC ?= gcc
+
+.PHONY: clean
+
+all: clean modules monitor work
+
+obj-m:= mp3.o
+
+modules:
+	$(MAKE) -C $(KERNEL_SRC) M=$(SUBDIR) modules
+
+monitor: monitor.c
+	$(CC) $(APP_CFLAGS) $< -o $@
+
+work: work.c
+	$(CC) $(APP_CFLAGS) $< -o $@
+
+clean:
+	rm -f monitor work *~ *.ko *.o *.mod.c Module.symvers modules.order
+```
+
+For example:
+
+```Makefile
+
+KERNEL_SRC:= ~/linux-5.15.127
+
+# everything else kept same
+```
+
+To test your kernel module, you can try loading, unloading, and running it in the MP0 VM. The following commands may be helpful:
+
+```command
+# inserting kernel module
+insmod mp3.ko
+
+# removing kernel module
+rmmod mp3.ko
+
+# print the kernel debug/printed messages
+dmesg
+```
+
 ## 1 Goals and Overview
 
 - Understand the Linux virtual to physical page mapping and page fault rate.
@@ -49,7 +131,7 @@ process in user-level collects the page fault counts and utilization of the work
 to a file by using a pipe. The saved data stored in a regular file are then plotted to show the page fault rate and CPU
 utilization as a function of the execution time. Finally, an analysis is done to explain the correlations between the
 measured page fault rate and utilization, and the characteristics of the used work processes. 
-The synthetic user-level programand themonitor programare provided as a part of this hand-out.
+The synthetic user-level programand the monitor programare provided as a part of this hand-out.
 **The major focus of this MP3 is to build a kernel-level module that harvests the page fault and utilization information of registered tasks and exposes
 them by using a memory buffer that is directly mapped into the virtual address space of the monitor process.**
 
@@ -62,10 +144,10 @@ a shared memory area to communicate with user space applications. We will use a 
 by any user. Our profiler should implement three operations available through the Proc file-system (similar to MP1 and MP2):
 
 - Registration: This allows the application to notify the profiler kernel module its intent to monitor its page fault
-    rate and utilization. This is done by sending a string formatted as “R <PID>”, where <PID> is PID of a process
+    rate and utilization. This is done by sending a string formatted as `R <PID>`, where <PID> is PID of a process
     to monitor.
 - Unregister: This allows the application to notify the profiler kernel module that the application has finished
-    using the profiler. This is done by sending a string formatted as “U <PID>”.
+    using the profiler. This is done by sending a string formatted as `U <PID>`.
 - Read Registered Task List: Additionally, an application running in the system should be able to query which
     applications are registered. When the entry (`/proc/mp3/status`) is read by an application, the kernel
     module must return a list with the PID of each application.
