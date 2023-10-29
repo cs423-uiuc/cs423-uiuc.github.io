@@ -182,7 +182,7 @@ the string formats for each the Proc Filesystem messages:
 
 3) You should augment the Process Control Block (PCB). This created PCB shall include three variables to keep the
 process utilization (u_time and s_time), major fault count, and minor fault count of the corresponding process. To
-obtain those numbers we have provided you with a helper function in `mp2_given.h`.
+obtain those numbers we have provided you with a helper function in `mp3_given.h`.
 
 4) Now you need to implement registration and unregistration functions. The registration function first adds the requesting process to the PCB list and calls a function that creates a work queue job if the requesting process is the
 first one in the PCB list. Similarly, the unregister function deletes the requesting process from the PCB list (if exists).
@@ -192,7 +192,7 @@ Then, if the PCB list is empty after the delete operation, the work queue job is
 module is uninitialized. The buffer needs to be virtually contiguous, but does not have to be physically contiguous.
 This means `vmalloc()` kernel function can be used instead of `kmalloc()` for this operation. As physically
 contiguous memory is scarce, **we require you to use `vmalloc()` as part of this MP.** The buffer memory size shall
-be larger than or equal to 128 x 4 kilobytes. In order to disable management of allocated pages by the virtual memory
+be larger than or equal to 128 x 4 KB. In order to disable management of allocated pages by the virtual memory
 system, the PG_reserved bit needs to be set.
 
 6) Your kernel module will use a delayed work queue <!-- (alternatively you can use a timer and a kernel thread) --> that
@@ -217,7 +217,7 @@ buffer to its address space. Only three callback functions of the Linux characte
 `close`, and `mmap`; where open and close callback handlers are defined as empty functions (i.e., function defined
 but does not have any valid statement to execute).
 
-To create a character device, you first need to `useregister_chrdev_region()` to register a range of device
+To create a character device, you first need to use `register_chrdev_region()` to register a range of device
 numbers. In MP3, you should use 423 as the major number of your character device and 0 as the minor number of
 your character device.
 
@@ -337,7 +337,7 @@ We will follow a similar submission procedure as we did in the previous MP.
 
 2) Find your name in the student list and click it to accept the assignment. Please double-check your name and email address before accepting the assignment (If you choose other’s name by mistake, please contact TA)..
 
-3) A repo named `cs423-uiuc/mp2-<your github id>` will be automatically created for you with the starter code in it.
+3) A repo named `cs423-uiuc/mp3-<your github id>` will be automatically created for you with the starter code in it.
 
 4) Your kernel module must be compiled to `mp3.ko`, and your test application must be compiled to userapp.
 Push your codeandplots to your repo before the deadline. Put plots under a `plots` folder and name them as mentioned in section 5.
