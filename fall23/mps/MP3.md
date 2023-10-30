@@ -2,7 +2,7 @@
 
 **Assignment Due**: Nov. 16th at 11:59 PM CT
 
-**Last Updated**: Oct. 29th
+**Last Updated**: Oct. 30th
 
 Table of Contents
 - [CS423 Fall 2023 MP3: Virtual Memory Page Fault Profiler](#cs423-fall-2023-mp3-virtual-memory-page-fault-profiler)
@@ -180,7 +180,7 @@ the string formats for each the Proc Filesystem messages:
 - For Registration: `R <PID>`
 - For Unregistration: `U <PID>`
 
-3) You should augment the Process Control Block (PCB). This created PCB shall include three variables to keep the
+3) [optional] You should augment the Process Control Block (PCB). This created PCB shall include three variables to keep the
 process utilization (u_time and s_time), major fault count, and minor fault count of the corresponding process. To
 obtain those numbers we have provided you with a helper function in `mp3_given.h`.
 
@@ -202,34 +202,34 @@ and saves the measured information to the memory buffer. We have provided the fu
 The values returned are the statistics between the previous and the current invocation ofget_cpu_use()for the
 requested process.
 
-The sampling rate of the profiler must be 20 times per second. This means our work handler must be executed 20
-times per second by the work queue. The memory buffer is organized as a queue that saves up to 12000 (=20x600)
-samples. Each sample consists of four `unsigned long` type data: 
-(a)`jiffies` value (which is the Linux kernel
-variable that shows the number of timer ticks executed since the kernel boot-up), 
-(b) minor fault count, 
-(c) major fault count, 
-and (d) CPU utilization (`s_time` + `u_time`). The work handler only writes one sample each time. 
-In each sample, (b), (c), and (d) are the sum of that of all the registered processes.
+    The sampling rate of the profiler must be 20 times per second. This means our work handler must be executed 20
+    times per second by the work queue. The memory buffer is organized as a queue that saves up to 12000 (=20x600)
+    samples. Each sample consists of four `unsigned long` type data: 
+    (a)`jiffies` value (which is the Linux kernel
+    variable that shows the number of timer ticks executed since the kernel boot-up), 
+    (b) minor fault count, 
+    (c) major fault count, 
+    and (d) CPU utilization (`s_time` + `u_time`). The work handler only writes one sample each time. 
+    In each sample, (b), (c), and (d) are the sum of that of all the registered processes.
 
 7) Your kernel module should use a **character device driver** to allow user-level process to map the shared memory
 buffer to its address space. Only three callback functions of the Linux character device driver are used: `open`,
 `close`, and `mmap`; where open and close callback handlers are defined as empty functions (i.e., function defined
 but does not have any valid statement to execute).
 
-To create a character device, you first need to use `register_chrdev_region()` to register a range of device
-numbers. In MP3, you should use 423 as the major number of your character device and 0 as the minor number of
-your character device.
+    To create a character device, you first need to use `register_chrdev_region()` to register a range of device
+    numbers. In MP3, you should use 423 as the major number of your character device and 0 as the minor number of
+    your character device.
 
-In order to access this character device from user-level process, a file needs to be created (i.e., as device is represented
-as a file in UNIX-like OS). The following shell command can be used to create this file which is named as `node`.
+    In order to access this character device from user-level process, a file needs to be created (i.e., as device is represented
+    as a file in UNIX-like OS). The following shell command can be used to create this file which is named as `node`.
 
-```
-$ insmod mp3.ko
-$ cat /proc/devices
-<check the created device’s major number>
-$ mknod node c 423 0
-```
+    ```
+    $ insmod mp3.ko
+    $ cat /proc/devices
+    <check the created device’s major number>
+    $ mknod node c 423 0
+    ```
 8) The buffer memory is mapped into the virtual address space of a user process upon request (i.e., by the mmap()
 callback). This is done by mapping the physical pages of the buffer to the virtual address space of a requested
 user process. For each page of the buffer, the following two kernel functions are used. First, the `vmalloc_to_pfn(virtual_address)` is used to get the physical page address of a virtual page of the buffer. Second,
@@ -272,8 +272,7 @@ $ ./monitor > profile1.data
 
 Plot a graph named `case_1_work_1_2.png` where x-axis is the time and y-axis is the accumulated page fault count of the two work processes
 (work processes 1 and 2). Note that if the MP3 kernel module is properly implemented as specified in this handout,
-each of the profiled page fault count sample represents the number of page faults occur during in every 20 milliseconds
-of interval.
+each of the profiled page fault count sample represents the number of page faults occur ~~during in every 20 milliseconds of interval~~ in each sampling interval (sampling rate = 20 times per second).
 
 Then, conduct another experiment by using following two work processes.
 
