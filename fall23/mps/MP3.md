@@ -2,7 +2,7 @@
 
 **Assignment Due**: Nov. 16th at 11:59 PM CT
 
-**Last Updated**: Oct. 26th
+**Last Updated**: Oct. 29th
 
 Table of Contents
 - [CS423 Fall 2023 MP3: Virtual Memory Page Fault Profiler](#cs423-fall-2023-mp3-virtual-memory-page-fault-profiler)
@@ -302,9 +302,35 @@ Work process 5: 200MB Memory, Random Locality Access, and 10,000 accesses per it
 
 Plot a graph named `case_2.png` where x-axis is N (i.e., 5, 11, 16, 20, 22) and y-axis is the total utilization of all N copies of the work
 process 5.
-Analyzethe quantitative differences between these three data points (where N is 5, 11, 16, 20, 22) and discuss where
+Analyze the quantitative differences between these three data points (where N is 5, 11, 16, 20, 22) and discuss where
 such differences come from. Both the utilization and the completion time of the work processes are points of interests
 in this analysis.
+
+**Added Oct 29** 
+If you found some processes get killed by OOM when N gets larger or never observed a major page fault, 
+    it's likely that you haven't setup a swap space.
+`cs423-q` doesn't have that enabled by default.
+To check if you have swap space, run `htop` inside QEMU VM and look for `Swp` size.
+
+Here's a guideline on how to setup swap space,
+```bash
+# outside QEMU VM
+# create a image for swap device of 2G
+qemu-img create -f qcow2 swap.qcow2 2G
+```
+
+Edit your qemu script line 247: (the field qemu-system-x86_64)'s last line: `-append "$cmdline" -s` to have a symbol to continue the line, and add `-drive file=<path to your img file you created>,if=ide` with a new line under it.
+
+When you launch the QEMU VM with the new script, a virtual device `/dev/sda` should appear.
+Next, we setup the swap device.
+
+```bash
+# inside QEMU VM
+# you can also put these two lines in guest function of cs423-q 
+# so that you don't need to type it every time when booting a QEMU VM.
+mkswap /dev/sda
+swapon /dev/sda
+```
 
 ### 6 Software Engineering
 
