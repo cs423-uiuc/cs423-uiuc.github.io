@@ -101,8 +101,8 @@ Due to the ever growing performance gap between memory and hard disk, the manage
 In order to optimize the techniques used as a part of the virtual memory system, it is important to first understand the
 behavioral characteristics of current virtual memory system for various types of user workloads.
 
-Among the various metrics that can capture the virtual memory system behavior, themajor and minor page fault
-ratesandCPU utilizationof a user process are important metrics. Here, major page fault is a fault that is handled by
+Among the various metrics that can capture the virtual memory system behavior, the major and minor page fault
+rates and CPU utilization of a user process are important metrics. Here, major page fault is a fault that is handled by
 using a disk I/O operation (e.g., memory-mapped file), and minor page fault is a fault that is handled without using a
 disk I/O operation (e.g., allocated by themalloc()function).
 
@@ -110,7 +110,7 @@ Page fault rate provides various kinds of useful information. For example, the p
 of allocated memory size shows the thrashing effect. Increasing the degree of multiprogramming also shows how
 increased page fault rate harms the utilization (or throughput) of the overall system.
 
-In order to accurately measure such metrics (page fault count and CPU utilization), manyprofiling operations
+In order to accurately measure such metrics (page fault count and CPU utilization), many profiling operations
 are needed in a short time interval. Because such data are available only in the OS kernel address space, this would
 cause a non-negligible performance overhead (e.g., switching contexts between user and kernel, copying data between
 user/kernel address spaces), particular if the processor is implemented as a user space process.
@@ -125,7 +125,7 @@ extra overhead other than accessing memory.
 *Figure 1: Overview of MP3.*
 
 
-Figure 1 gives an overview of this MP. A set ofsynthetic user-level work processes is created to emulate different
+Figure 1 gives an overview of this MP. A set of synthetic user-level work processes is created to emulate different
 types of memory usage patterns (e.g., in terms of the used memory size and memory access locality). A monitor
 process in user-level collects the page fault counts and utilization of the work processes and saves the collected data
 to a file by using a pipe. The saved data stored in a regular file are then plotted to show the page fault rate and CPU
@@ -140,7 +140,7 @@ them by using a memory buffer that is directly mapped into the virtual address s
 In this MP, we will implement a profiler of page fault rate and CPU utilization for the Linux system. We will
 implement this profiler in a Linux Kernel module and we will use the Proc filesystem, a character device driver, and
 a shared memory area to communicate with user space applications. We will use a single Proc file-system entry
-(`/proc/mp3/status`) for registering and unregistering monitored user- level processes. The Proc file is accessible
+(`/proc/mp3/status`) for registering and unregistering monitored user-level processes. The Proc file is accessible
 by any user. Our profiler should implement three operations available through the Proc file-system (similar to MP1 and MP2):
 
 - Registration: This allows the application to notify the profiler kernel module its intent to monitor its page fault
@@ -199,7 +199,7 @@ system, the PG_reserved bit needs to be set.
 periodically measures the major and minor page fault counts, and CPU utilization of all registered user processes
 and saves the measured information to the memory buffer. We have provided the function `get_cpu_use()` in
 `mp3_given.h` that returns the number of major and minor page faults and CPU utilization in expressed in jiffies.
-The values returned are the statistics between the previous and the current invocation ofget_cpu_use()for the
+The values returned are the statistics between the previous and the current invocation of `get_cpu_use()` for the
 requested process.
 
     The sampling rate of the profiler must be 20 times per second. This means our work handler must be executed 20
