@@ -104,7 +104,7 @@ behavioral characteristics of current virtual memory system for various types of
 Among the various metrics that can capture the virtual memory system behavior, the major and minor page fault
 rates and CPU utilization of a user process are important metrics. Here, major page fault is a fault that is handled by
 using a disk I/O operation (e.g., memory-mapped file), and minor page fault is a fault that is handled without using a
-disk I/O operation (e.g., allocated by themalloc()function).
+disk I/O operation (e.g., allocated by the malloc()function).
 
 Page fault rate provides various kinds of useful information. For example, the page fault rate plotted as a function
 of allocated memory size shows the thrashing effect. Increasing the degree of multiprogramming also shows how
