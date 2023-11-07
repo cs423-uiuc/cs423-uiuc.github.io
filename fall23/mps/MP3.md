@@ -131,7 +131,7 @@ process in user-level collects the page fault counts and utilization of the work
 to a file by using a pipe. The saved data stored in a regular file are then plotted to show the page fault rate and CPU
 utilization as a function of the execution time. Finally, an analysis is done to explain the correlations between the
 measured page fault rate and utilization, and the characteristics of the used work processes. 
-The synthetic user-level program and the monitor programare provided as a part of this hand-out.
+The synthetic user-level program and the monitor program are provided as a part of this hand-out.
 **The major focus of this MP3 is to build a kernel-level module that harvests the page fault and utilization information of registered tasks and exposes
 them by using a memory buffer that is directly mapped into the virtual address space of the monitor process.**
 
