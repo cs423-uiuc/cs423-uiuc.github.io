@@ -331,6 +331,17 @@ mkswap /dev/sda
 swapon /dev/sda
 ```
 
+If you are using aarch64, please follow the instructions below:
+```bash
+# make sure CONFIG_BLK_DEV_LOOP is y in make menuconfig
+# in level 2 VM
+dd if=/dev/zero of=/swap_file bs=1MB count=2048
+chmod 600 /swap_file
+mkswap /swap_file
+losetup /dev/loop0 /swap_file
+swapon /dev/loop0
+```
+
 ### 6 Software Engineering
 
 Your code should include comments where appropriate. It is not a good idea to repeat what the function does us-
