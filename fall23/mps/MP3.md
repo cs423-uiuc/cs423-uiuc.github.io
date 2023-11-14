@@ -341,6 +341,10 @@ mkswap /swap_file
 losetup /dev/loop0 /swap_file
 swapon /dev/loop0
 ```
+And remember to run qemu script by:
+```bash
+MEMORY=6144 ../qemu-script/cs423-q
+```
 
 ### 6 Software Engineering
 
