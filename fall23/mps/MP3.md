@@ -301,7 +301,7 @@ Work process 5: 200MB Memory, Random Locality Access, and 10,000 accesses per it
 
 Plot a graph named `case_2.png` where x-axis is N (i.e., 5, 11, 16, 20, 22) and y-axis is the total utilization of all N copies of the work
 process 5.
-Analyze the quantitative differences between these three data points (where N is 5, 11, 16, 20, 22) and discuss where
+Analyze the quantitative differences between these ~~three~~ data points (where N is 5, 11, 16, 20, 22) and discuss where
 such differences come from. Both the utilization and the completion time of the work processes are points of interests
 in this analysis.
 
@@ -329,6 +329,21 @@ Next, we setup the swap device.
 # so that you don't need to type it every time when booting a QEMU VM.
 mkswap /dev/sda
 swapon /dev/sda
+```
+
+If you are using aarch64, please follow the instructions below:
+```bash
+# make sure CONFIG_BLK_DEV_LOOP is y in make menuconfig
+# in level 2 VM
+dd if=/dev/zero of=/swap_file bs=1MB count=2048
+chmod 600 /swap_file
+mkswap /swap_file
+losetup /dev/loop0 /swap_file
+swapon /dev/loop0
+```
+And for aarch64 remember to run qemu script by:
+```bash
+MEMORY=6144 ../qemu-script/cs423-q
 ```
 
 ### 6 Software Engineering
