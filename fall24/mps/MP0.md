@@ -247,7 +247,7 @@ following command:
 dmesg | grep 'Linux version'
 ```
 
-The submission URL is: TBD
+The submission URL is: [here](https://docs.google.com/forms/d/e/1FAIpQLScuT_GT60L2MFJqEoC-MmSU-EBIbWzJyACcDsKTs8f4Bd265A/viewform?usp=pp_url)
 
 Just keep in mind if you don't do this MP correctly, you will not be able
 to work on the later MPs.
