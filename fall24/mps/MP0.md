@@ -21,13 +21,13 @@ to work on the later MPs.
 * [Kernel Compilation](#kernel-compilation)
 * [Submit Your Result](#submit-your-result)
 
-# Overview 
+# Overview
 
 ### Goals
 
 - In this MP you will learn download, compile, and install your own kernel.
 - You will configure your development environment for upcoming projects
-- You will familiarize yourself with the layout of the kernel's code 
+- You will familiarize yourself with the layout of the kernel's code
 - The kernel source code will be a helpful reference for upcoming MPs
 
 Note: The instructions in this document are adapted from the guide at
@@ -247,7 +247,7 @@ following command:
 dmesg | grep 'Linux version'
 ```
 
-The submission URL is: https://forms.gle/Q4TbDBt6ZrNPSLM6A
+The submission URL is: TBD
 
 Just keep in mind if you don't do this MP correctly, you will not be able
 to work on the later MPs.
