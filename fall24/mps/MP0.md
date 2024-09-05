@@ -135,10 +135,10 @@ sudo apt-get install git bc libncurses-dev wget busybox libssl-dev libelf-dev dw
 
 ```bash
 # If using x86
-sudo apt-get install qemu qemu-system-x86
+sudo apt-get install qemu-system-x86
 
 # If using ARM
-sudo apt-get install qemu qemu-system-arm
+sudo apt-get install qemu-system-arm
 ```
 
 - Now, let's download the kernel source code (**1-5 minutes**):
