@@ -2,7 +2,7 @@
 
 **Assignment Due**: Sep. 17th at 11:59 PM CT
 
-**Last Updated**: Sep. 1st
+**Last Updated**: Sep. 5th, 2024
 
 This document will guide you through your MP0 for CS 423 Operating System
 Design.  It will help you prepare an environment for upcoming MPs.
@@ -235,7 +235,7 @@ Linux CSL-PowerEdge-R750 5.15.165-tyxu #1 SMP Sun Aug 13 04:57:03 EDT 2023 x86_6
 
 _**Note**: Depends on your environment and configuration, your output may
 look different.  But, please make sure the output contains
-`5.15.127-<netid>`._
+<s>`5.15.127-<netid>`</s> `5.15.165-<netid>`._
 
 # Submit Your Result
 
