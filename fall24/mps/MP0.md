@@ -85,7 +85,7 @@ following VM hypervisors if you don't have one:
 
 - **UTM**:
 
-  UTM is an VM hypervisor available for free on the AppStore or its GitHub
+  UTM is an VM hypervisor available for free on HomeBrew or its GitHub
   repository (https://github.com/utmapp/UTM).
 
   _**Note**: While creating a new VM in UTM, avoid selecting the "Apple
