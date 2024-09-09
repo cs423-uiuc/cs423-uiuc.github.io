@@ -39,7 +39,7 @@ This MP will require you to read, write and debug C-based kernel code in depth. 
 - You should be able to read, write and debug program codes written in C language.
 - (Recommended) You may have a code editor that supports Linux kernel module development - for example, VSCode, Neovim, or GNU Emacs.
 - (Recommended) You may use the Linux Kernel Documentation (https://www.kernel.org/doc/html/v5.15/index.html) to search the Linux kernel documents for concepts and high-level descriptions.
-- (Recommended) You may use the Elixir Cross Referencer (https://elixir.bootlin.com/linux/v5.15.127/source) to search the Linux kernel codebase for function definitions and use cases.
+- (Recommended) You may use the Elixir Cross Referencer (https://elixir.bootlin.com/linux/v5.15.165/source) to search the Linux kernel codebase for function definitions and use cases.
 
 ### Introduction
 
@@ -53,7 +53,7 @@ Kernel Programming has some particularities that can make it more difficult to d
 
 4. Last but not least, Linux Kernel disallows the use of floating-point types and operations. That is all the math must be implemented using integer types (i.e. `int`, `long`, or `char`).
 
-Through the rest of the document and your implementation you will learn some of the basic mechanisms, structures and designs common to many areas of Linux Kernel Development. If you feel lost, the best thing to do is to check the Linux Kernel Documentation (https://www.kernel.org/doc/html/v5.15/index.html) or the Elixir Cross Referencer (https://elixir.bootlin.com/linux/v5.15.127/source) - they are your most useful encyclopedia and dictionary in kernel development. Also, Stack Overflow, LWN.net and O'Reilly Media can sometimes provide you with some useful information.
+Through the rest of the document and your implementation you will learn some of the basic mechanisms, structures and designs common to many areas of Linux Kernel Development. If you feel lost, the best thing to do is to check the Linux Kernel Documentation (https://www.kernel.org/doc/html/v5.15/index.html) or the Elixir Cross Referencer (https://elixir.bootlin.com/linux/v5.15.165/source) - they are your most useful encyclopedia and dictionary in kernel development. Also, Stack Overflow, LWN.net and O'Reilly Media can sometimes provide you with some useful information.
 
 # Problem Description
 
@@ -202,11 +202,11 @@ If you want to compile the kernel module outside of the MP0 VM, you may edit the
 obj-m += mp1.o
 
 all:
-        make -C <PATH_TO_YOUR_5.15.127_KERNEL> M=$(PWD) modules
+        make -C <PATH_TO_YOUR_5.15.165_KERNEL> M=$(PWD) modules
         gcc -o userapp userapp.c
 
 clean:
-        make -C <PATH_TO_YOUR_5.15.127_KERNEL> M=$(PWD) clean
+        make -C <PATH_TO_YOUR_5.15.165_KERNEL> M=$(PWD) clean
         $(RM) userapp
 ```
 
@@ -216,11 +216,11 @@ For example:
 obj-m += mp1.o
 
 all:
-        make -C ~/linux-5.15.127 M=$(PWD) modules
+        make -C ~/linux-5.15.165 M=$(PWD) modules
         gcc -o userapp userapp.c
 
 clean:
-        make -C ~/linux-5.15.127 M=$(PWD) clean
+        make -C ~/linux-5.15.165 M=$(PWD) clean
         $(RM) userapp
 ```
 
