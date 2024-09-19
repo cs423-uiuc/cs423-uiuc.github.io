@@ -127,8 +127,8 @@ flowchart TB
     end
 
     subgraph Kernel Module
-        readproc("Proc File Read Callback")--"Register Process"-->list("List of Registered Processes")
-        writeproc("Proc File Write Callback")--"Check and Report Run Time"-->list
+        readproc("Proc File Read Callback")--"Check and Report Run Time"-->list("List of Registered Processes")
+        writeproc("Proc File Write Callback")--"Register Process"-->list
         upper("Timer Callback (Top-Half)")--"Schedule Work"-->lower("Work Function (Bottom-Half)")
         procfile("Proc Filesystem Entry")--"Triggers on Read"-->readproc
         procfile--"Triggers on Write"-->writeproc
