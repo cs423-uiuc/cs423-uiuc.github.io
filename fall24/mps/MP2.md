@@ -298,7 +298,7 @@ We recommend you keep a global variable with the current running task (`struct m
 
 ##### 6b. Implementing the Wake Up Timer Handler
 
-Now we should implement the wake up timer handler. As mentioned before the handler, should change the state of the task to READY and should wake up the dispatching thread. You can think of this mechanism as a two-halves where the top half is the wake-up timer handler and the bottom half is the dispatching thread.
+Now we should implement the wake up timer handler. As mentioned before, the handler should change the state of the task to READY and should wake up the dispatching thread. You can think of this mechanism as a two-halves where the top half is the wake-up timer handler and the bottom half is the dispatching thread.
 
 According to your own implementation needs, consider whether to wake up the dispatching thread during the de-registration.
 
