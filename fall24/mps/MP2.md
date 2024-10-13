@@ -267,14 +267,26 @@ In Step 6 we will implement the dispatching thread and the kernel mechanism. In 
 
 ##### 6a. Implementing the Dispatching Thread
 
-Let's start by implementing the dispatching thread. As soon as the context switch wakes up, you will need to find **a new task with the highest priority (that is the shortest period)** from the list of registered tasks. 
-If the current running task is not in running state (e.g. set to SLEEPING in yield handler),
-the current running task should be preempted.
-Otherwise, consider the following situations:
-- If the new task has a higher priority than currently running task, you need to preempt the currently running task (if any) and context switch to the chosen task. 
-- If the new task **doesn't have a higher priority** than the currently running task, then you should not preempt the currently running task and keep the new task in the READY state.
+We recommend you keep a global variable with the current running task (`struct mp2_task_struct* mp2_current`). This will simplify your implementation. This practice is common and it is even used by the Linux kernel. If there is no running task you can set it to NULL.
+
+As soon as the dispatching thread wakes up, you will need to find **a new task in READY state with the highest priority (that is the shortest period)** from the list of registered tasks. 
+
+If the current running task is in RUNNING state, consider the following situations:
+- If the new task has a higher priority than current running task, you need to preempt the current running task (if any) and context switch to the chosen task.
+Make sure you set the preempted task to READY since it's not yet completed and set the newly active task to RUNNING.
+- If the new task **doesn't have a higher priority** than the current running task, then you should not preempt the current running task and keep the new task in the READY state.
 - If there are no tasks in the READY state, you should keep the current task running.
 
+If the current task is in SLEEPING state, it indicates we enter the dispatching thread from yield handler
+which changes the task from RUNNING to SLEEPING.
+We preempt the current task.
+If there's a task in READY state, pick the one with highest priority and context switch to it.
+Otherwise, there's no task ready to run, set current running task to NULL.
+
+Note that the current task should not be in READY state since READY state means the task is waiting to be scheduled.
+
+If the current task is NULL, follow the same procedure as it is in SLEEPING state 
+except that no preemption will happen.
 
 <!-- If there are no tasks in the READY state, just preempt the current task. Set the old running task's state to READY only if it's in the RUNNING state and the job isn't finished. This is because we only set the old task's state to SLEEPING in the YIELD handler function when the job is complete. Also, make sure to set the state of the newly active task to RUNNING. -->
 
@@ -301,7 +313,7 @@ attr.sched_priority = 0;
 sched_setattr_nocheck(task, &attr);
 ```
 
-We recommend you keep a global variable with the current running task (`struct mp2_task_struct* mp2_current`). This will simplify your implementation. This practice is common and it is even used by the Linux kernel. If there is no running task you can set it to NULL.
+
 
 ##### 6b. Implementing the Wake Up Timer Handler
 
