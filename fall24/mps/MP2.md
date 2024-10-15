@@ -59,7 +59,7 @@ This MP will require you to read, write and debug C-based kernel code in depth. 
 
 ### Compile and Test Your Code
 
-To test your kernel module, you can try loading, unloading, and running it in the MP0 VM. The following commands may be helpful:
+To test your kernel module, you can try loading, unloading, and running it in the MP0 **QEMU** VM. The following commands may be helpful:
 
 ```command
 # inserting kernel module
