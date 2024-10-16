@@ -1,6 +1,6 @@
 # CS423 Fall 2024 MP2: Rate-Monotonic CPU Scheduling
 
-**Assignment Due**: Oct. 24th at 11:59 PM CT
+**Assignment Due**: Oct. 29th at 11:59 PM CT
 
 **Last Updated**: Oct. 1th
 
