@@ -373,11 +373,11 @@ We will follow a similar submission procedure as we did in the previous MP.
 
 
 
-1) Open the link https://classroom.github.com/a/V8dS5v7Z login using your GitHub account.
+1) Open the link https://classroom.github.com/a/3ti8WBjt login using your GitHub account.
 
 2) Find your name in the student list and click it to accept the assignment. Please double-check your name and email address before accepting the assignment (If you choose other’s name by mistake, please contact TA)..
 
-3) A repo named `cs423-uiuc/mp3-<your github id>` will be automatically created for you with the starter code in it.
+3) A repo named `uiuc-cs423-fall24/mp3-<your github id>` will be automatically created for you with the starter code in it.
 
 4) Your kernel module must be compiled to `mp3.ko`, and your test application must be compiled to userapp.
 Push your codeandplots to your repo before the deadline. Put plots under a `plots` folder and name them as mentioned in section 5.
