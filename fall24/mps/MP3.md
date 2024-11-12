@@ -210,7 +210,7 @@ requested process.
     (b) minor fault count, 
     (c) major fault count, 
     and (d) CPU utilization (`s_time` + `u_time`). The work handler only writes one sample each time. 
-    In each sample, (b), (c), and (d) are the sum of that of all the registered processes.
+    In each sample, (b), (c), and (d) are the sum of that of all the registered processes **within a sampling period (1/20 seconds)** (updated Nov 11).
 
 7) Your kernel module should use a **character device driver** to allow user-level process to map the shared memory
 buffer to its address space. Only three callback functions of the Linux character device driver are used: `open`,
