@@ -271,7 +271,7 @@ $ nice ./work 1024 R 50000 & nice ./work 1024 R 10000 &
 $ ./monitor > profile1.data
 ```
 
-Plot a graph named `case_1_work_1_2.png` where x-axis is the time and y-axis is the accumulated page fault count of the two work processes
+Plot a graph named `case_1_work_1_2.png` where x-axis is the time and y-axis is the accumulated page fault count (accumulated since the start) of the two work processes
 (work processes 1 and 2). Note that if the MP3 kernel module is properly implemented as specified in this handout,
 each of the profiled page fault count sample represents the number of page faults occur ~~during in every 20 milliseconds of interval~~ in each sampling interval (sampling rate = 20 times per second).
 
