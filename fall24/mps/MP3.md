@@ -306,11 +306,13 @@ Analyze the quantitative differences between these ~~three~~ data points (where 
 such differences come from. Both the utilization and the completion time of the work processes are points of interests
 in this analysis.
 
-**Added Oct 29** 
+##### Setting up swap space
 If you found some processes get killed by OOM when N gets larger or never observed a major page fault, 
     it's likely that you haven't setup a swap space.
 `cs423-q` doesn't have that enabled by default.
-To check if you have swap space, run `htop` inside QEMU VM and look for `Swp` size.
+To check if you have swap space, run `free` inside QEMU VM and look for `Swap` size.
+
+**Setup for x86-64**
 
 Here's a guideline on how to setup swap space,
 ```bash
@@ -332,19 +334,23 @@ mkswap /dev/sda
 swapon /dev/sda
 ```
 
-If you are using aarch64, please follow the instructions below:
+**Setup for AArch64**
+
+If you are using aarch64, first set `CONFIG_BLK_DEV_LOOP=y` for your 5.15
+kernel, and then launch your QEMU with:
+
 ```bash
-# make sure CONFIG_BLK_DEV_LOOP is y in make menuconfig
-# in level 2 VM
+MEMORY=6144 ../qemu-script/cs423-q
+```
+
+Inside QEMU, do the following:
+
+```bash
 dd if=/dev/zero of=/swap_file bs=1MB count=2048
 chmod 600 /swap_file
 mkswap /swap_file
 losetup /dev/loop0 /swap_file
 swapon /dev/loop0
-```
-And for aarch64 remember to run qemu script by:
-```bash
-MEMORY=6144 ../qemu-script/cs423-q
 ```
 
 ### 6 Software Engineering
