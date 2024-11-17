@@ -306,7 +306,8 @@ Analyze the quantitative differences between these ~~three~~ data points (where 
 such differences come from. Both the utilization and the completion time of the work processes are points of interests
 in this analysis.
 
-##### Setting up swap space
+**Setting up swap space**
+
 If you found some processes get killed by OOM when N gets larger or never observed a major page fault, 
     it's likely that you haven't setup a swap space.
 `cs423-q` doesn't have that enabled by default.
@@ -321,7 +322,7 @@ Here's a guideline on how to setup swap space,
 qemu-img create -f qcow2 swap.qcow2 2G
 ```
 
-Edit your qemu script line 247: (the field qemu-system-x86_64)'s last line: `-append "$cmdline" -s` to have a symbol to continue the line, and add `-drive file=<path to your img file you created>,if=ide` with a new line under it.
+Edit your qemu script line 247: (the field `qemu-system-x86_64`)'s last line: `-append "$cmdline" -s` to have a symbol to continue the line, and add `-drive file=<path to your img file you created>,if=ide` with a new line under it.
 
 When you launch the QEMU VM with the new script, a virtual device `/dev/sda` should appear.
 Next, we setup the swap device.
@@ -336,8 +337,8 @@ swapon /dev/sda
 
 **Setup for AArch64**
 
-If you are using aarch64, first set `CONFIG_BLK_DEV_LOOP=y` for your 5.15
-kernel, and then launch your QEMU with:
+If you are using aarch64, first set `CONFIG_BLK_DEV_LOOP=y` and rebuild your
+5.15 kernel, and then launch your QEMU with:
 
 ```bash
 MEMORY=6144 ../qemu-script/cs423-q
