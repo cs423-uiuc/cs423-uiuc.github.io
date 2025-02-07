@@ -128,6 +128,7 @@ _**Note**: the following steps assume you are running Ubuntu 24.04._
 downloading the standard development tools (**2-5 minutes**):
 
 ```bash
+sudo apt-get update
 sudo apt-get install git bc libncurses-dev wget busybox libssl-dev libelf-dev dwarves flex bison build-essential
 ```
 
