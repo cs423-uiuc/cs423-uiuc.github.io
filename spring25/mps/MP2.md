@@ -210,7 +210,7 @@ The best way to start is by implementing an empty ('Hello World!') Linux Kernel 
 
 After this you should implement the Proc Filesystem entry. The write callback function should have a switch to separate each type of message (REGISTRATION, YIELD, DE-REGISTRATION). At this step 2 of implementation you may leave the functions empty or simply print a message using `printk()`, but you will implement them then in full functionality during the steps 7 and 8.
 
-   We recommend adding an operation character at the beginning and performing the switch operation over that character. This allows you to receive various types of messages with a single Proc filesystem entry and provide a single unified interface. As an example, we show the string formats for each of the Proc Filesystem messages:
+   We recommend adding an operation character at the beginning and performing the switch operation over that character. This allows you to receive various types of messages with a single Proc filesystem entry and provide a single unified interface. You should use the following string formats for each of the Proc Filesystem messages:
 
    - For REGISTRATION: `R,PID,PERIOD,COMPUTATION`
      - Example: `R,123,1000,500`, the unit of `period` and `computation` should be in `milliseconds`. `PID` is the process ID of the process.
