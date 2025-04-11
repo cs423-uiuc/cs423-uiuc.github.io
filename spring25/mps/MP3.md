@@ -1,4 +1,4 @@
-# CS423 Fall 2024 MP3: Virtual Memory Page Fault Profiler
+# CS423 Spring 2025 MP3: Virtual Memory Page Fault Profiler
 
 **Assignment Due**: Apr. 23rd at 11:59 PM CT
 
