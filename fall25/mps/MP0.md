@@ -4,15 +4,11 @@
 
 **Last Updated**: Aug. 26th, 2025
 
-This document will guide you through your MP0 for CS 423 Operating System
-Design.  It will help you prepare an environment for upcoming MPs.
+This document will guide you through your MP0 for CS 423 Operating System Design.  It will help you prepare an environment for upcoming MPs.
 
-Considering that you need to compile a Linux kernel all by yourself, this
-MP0 may consume several minutes to a few hours of your machine time to
-complete.
+Considering that you need to compile a Linux kernel all by yourself, this MP0 may consume several minutes to a few hours of your machine time to complete.
 
-Just keep in mind if you don't do this MP correctly, you will not be able
-to work on the later MPs.
+> **If you don't do this MP correctly, you will not be able to work on the later MPs.**
 
 # Table of Contents
 * [Overview](#overview)
@@ -127,7 +123,7 @@ following VM hypervisors if you don't have one:
 
 ### Prepare for Kernel Compilation
 
-_**Note**: the following steps assume you are running Ubuntu 24.04._
+> the following steps assume you are running Ubuntu 24.04.
 
 - Start configuring your machine for kernel module development by
 downloading the standard development tools (**2-5 minutes**):
@@ -207,9 +203,9 @@ make -j`nproc` LOCALVERSION=-$NETID
 _**IMPORTANT**: CHANGE THE ABOVE LINE TO REPLACE `$NETID` WITH YOUR NETID.
 The `LOCALVERSION` field is appended to the name of your kernel._
 
-_**Note**: Depends on how powerful your PC is, this step may take anywhere
-from several minutes to a few hours.  You may want to plug-in your laptop
-and put your PC into high performance mode if you want to make it faster._
+> Depends on how powerful your PC is, this step may take anywhere from several minutes to a few hours.  You may want to plug-in your laptop and put your PC into high performance mode if you want to make it faster.
+
+> If you are using gcc >15, the default `-std=c23` option will break the build. Switch to gcc <=14 or patch the kernel by yourself
 
 Upon successful compilation, you will have new kernel image (a file called
 `vmlinux`) built in your kernel directory.
@@ -237,21 +233,14 @@ Example output:
 Linux CSL-PowerEdge-R750 5.15.165-tyxu #1 SMP Sun Aug 13 04:57:03 EDT 2023 x86_64 x86_64 x86_64 GNU/Linux
 ```
 
-_**Note**: Depends on your environment and configuration, your output may
-look different.  But, please make sure the output contains
-<s>`5.15.127-<netid>`</s> `5.15.165-<netid>`._
+> Depends on your environment and configuration, your output may look different. But, please make sure the output contains `5.15.165-<netid>`.
 
 # Submit Your Result
 
-This is an easy one - all you need to submit is the output from the
+This is an easy one - you just need to submit to this **[form](https://docs.google.com/forms/d/e/1FAIpQLScGT0yraO3Y4nfpJaF033hxz8F4ZNoMkycOj4qbsYJQNYsPIw/viewform?usp=dialog)** the output from the
 following command:
 
 ```bash
 # in your VM/QEMU
 dmesg | grep 'Linux version'
 ```
-
-The submission URL is: [here](https://docs.google.com/forms/d/e/1FAIpQLScGT0yraO3Y4nfpJaF033hxz8F4ZNoMkycOj4qbsYJQNYsPIw/viewform?usp=dialog)
-
-Just keep in mind if you don't do this MP correctly, you will not be able
-to work on the later MPs.
