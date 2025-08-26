@@ -111,16 +111,19 @@ following VM hypervisors if you don't have one:
 
 **If you are using a Linux bare-metal machine**:
 
-- You don't need to perform a Client Setup. You can use your own distro.
+- Good luck with your own distro.
 
 **If you are using a VM hypervisor**:
 
 - Install VM client with Ubuntu Server 24.04 as your distro. You can download the
   distro image at:
   - x86: https://mirror.us-midwest-1.nexcess.net/ubuntu-releases/24.04.3/ubuntu-24.04.3-live-server-amd64.iso
+  
   - ARM: https://cdimage.ubuntu.com/releases/24.04/release/ubuntu-24.04.3-live-server-arm64.iso
-
-**Note that Ubuntu Server does not come with a GUI.** We recommend you check the "Install OpenSSH" option during the installation and use your favorite SSH client for development.
+  
+  > **Ubuntu Server does not come with a GUI.** We recommend you check the "Install OpenSSH" option during the installation and use your favorite SSH client for development.
+  
+- For Windows users, enable "OpenSSH Server" in Settings > Optional Features and then you can use Windows Terminal to connect to VMs
 
 ### Prepare for Kernel Compilation
 
