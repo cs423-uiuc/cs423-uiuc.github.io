@@ -78,7 +78,7 @@ have one:
   https://community.broadcom.com/vmware-cloud-foundation/discussion/how-to-disable-hyper-v-in-windows-11-24h2. In the case you have disabled it,
   you may freely use third-party VM hypervisors. 
 
-- **Windows Subsystem for Linux 2 (WSL 2)**:
+- **Windows Subsystem for Linux 2 (WSL 2) on Hyper-V**:
 
   WSL 2 is a feature of the Windows operating system that enables you to run
   Linux directly on Windows. It is available for free on Windows 10/11. An
@@ -190,7 +190,7 @@ This will create a config for your kernel based on the old .config file. In
 case there are any new config without values, it will use the default
 automatically.
 
-- Clean the kernel source directory to prepare for compilation:
+Clean the kernel source directory to prepare for compilation:
 
 ```bash
 make clean
