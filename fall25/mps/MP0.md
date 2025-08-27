@@ -94,18 +94,30 @@ have one:
 
   > Please ensure that nested virtualization is enabled. You can enable nested
     virtualization using this guide:
-    https://www.virtualbox.org/manual/topics/AdvancedTopics.html#nested-virt
+    https://www.virtualbox.org/manual/topics/AdvancedTopics.html#nested-virt.
+    Nested virtualization can make your kernel runs faster, as it runs in
+    a nested QEMU VM.
 
 **macOS**:
+
+> If you are using ARM-based Mac, we recommend UTM.
 
 - **UTM**:
 
   UTM is a VM hypervisor available for free on Homebrew or its GitHub
   repository (https://github.com/utmapp/UTM).
 
-  > While creating a new VM in UTM, avoid selecting the "Apple Virtualization"
-    option. It has been reported to lead to filesystem corruption. More details
-    can be found here: https://github.com/utmapp/UTM/issues/4840
+  > Please ensure that you select "Use Apple Virtualization" while creating a
+    new VM in UTM. This can enable nested virtualization if supported.
+
+- **VirtualBox**
+  
+  VirtualBox is a VM hypervisor developed by Oracle. You can download it at
+  https://www.virtualbox.org/.
+
+  > Please ensure that nested virtualization is enabled. You can enable nested
+    virtualization using this guide:
+    https://www.virtualbox.org/manual/topics/AdvancedTopics.html#nested-virt.
 
 **Linux**:
 
@@ -121,10 +133,10 @@ the distro image at:
   - ARM: https://cdimage.ubuntu.com/releases/24.04/release/ubuntu-24.04.3-live-server-arm64.iso
   
 Ubuntu Server does not come with a GUI. We recommend you check the "Install
-OpenSSH" option during the installation and connect to your VM using SSH for
-development. Most modern operating systems ships with a SSH client, and you
-can use your favorite terminal emulator (like Windows Terminal) to connect to
-your VM.
+OpenSSH Server" option during the installation and connect to your VM using
+SSH for development. Most modern operating systems ships with a SSH client,
+and you can use your favorite terminal emulator (like Windows Terminal) to
+connect to your VM.
 
 ### Prepare for Kernel Compilation
 
