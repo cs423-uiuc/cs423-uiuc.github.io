@@ -16,7 +16,7 @@ complete.
 
 # Table of Contents
 * [Overview](#overview)
-* [Before you start](#before-you-start)
+* [Before You Start](#before-you-start)
 * [Environmental Setup](#environmental-setup)
 * [Kernel Compilation](#kernel-compilation)
 * [Submit Your Result](#submit-your-result)
@@ -32,7 +32,7 @@ complete.
 Note: The instructions in this document are adapted from the guide at
 https://wiki.ubuntu.com/KernelTeam/GitKernelBuild
 
-# Before you start
+# Before You Start
 
 ### What you need
 
@@ -59,31 +59,46 @@ sections of this document assumes you are using Ubuntu 24.04.
 
 # Environmental Setup
 
-### Linux VM Setup
+### Linux VM setup
 
 > If you are planning to use a Linux bare-metal machine, please go directly to
   the next section.
 
 Before setting up a Linux VM, you will need to install a VM hypervisor.
 Depends on your operating system, there are some recommendations if you don't
-have one:
+have one.
+
+We will also introduce how to enable nested virtualization for your hypervisor.
+Your kernel runs in a QEMU VM inside your Linux VM, which is a case of nested
+virtualization. Without nested virtualization, QEMU will use software. As a
+result, your kernel will run much slower.
 
 **Windows**:
 
-> Modern Windows PCs often ships with a Hyper-V hypervisor, which can interfere
-  all other third-party VM hypervisors, to support various security features
-  like VBS and HVCI. In this case, we recommend WSL 2 only.  Checking the
-  status/disabling the Hyper-V hypervisor is actually quite complicated. If
-  you are interested, you can follow this guide:
-  https://community.broadcom.com/vmware-cloud-foundation/discussion/how-to-disable-hyper-v-in-windows-11-24h2. In the case you have disabled it,
-  you may freely use third-party VM hypervisors. 
+Modern Windows PCs often ships with a Hyper-V hypervisor, which can interfere
+all other third-party VM hypervisors, to support various security features
+like VBS and HVCI. In this case, we recommend WSL 2 only. However, keep in
+mind that if you are using Windows Home, you won't be able to enable nested
+virtualization in your WSL 2 VM as only Windows Pro/Enterprise includes the
+full support for Hyper-V.
+
+Checking the status or disabling the Hyper-V hypervisor is actually quite
+complicated. If you are interested, you can follow this guide:
+https://community.broadcom.com/vmware-cloud-foundation/discussion/how-to-disable-hyper-v-in-windows-11-24h2. In the case that you are using
+Windows Home or you want to use third-party VM hypervisors, you may want to
+disable it. However, you are warned that you will lose access to your
+current WSL 2 VM and various security features.
 
 - **Windows Subsystem for Linux 2 (WSL 2) on Hyper-V**:
 
   WSL 2 is a feature of the Windows operating system that enables you to run
   Linux directly on Windows. It is available for free on Windows 10/11. An
   instruction on how to set it up is available at
-  https://github.com/chinrw/wsl-qemu-kvm.
+  https://learn.microsoft.com/en-us/windows/wsl/install.
+
+  > If you are running Windows Pro/Enterprise, please ensure that nested
+    virtualization is enabled. You can enable nested
+    virtualization using this guide: https://github.com/chinrw/wsl-qemu-kvm.
   
   > After setting it up, you can go directly to the next section.
 
@@ -95,12 +110,10 @@ have one:
   > Please ensure that nested virtualization is enabled. You can enable nested
     virtualization using this guide:
     https://www.virtualbox.org/manual/topics/AdvancedTopics.html#nested-virt.
-    Nested virtualization can make your kernel runs faster, as it runs in
-    a nested QEMU VM.
 
 **macOS**:
 
-> If you are using ARM-based Mac, we recommend UTM.
+If you are using ARM-based Mac, we recommend UTM.
 
 - **UTM**:
 
@@ -108,7 +121,8 @@ have one:
   repository (https://github.com/utmapp/UTM).
 
   > Please ensure that you select "Use Apple Virtualization" while creating a
-    new VM in UTM. This can enable nested virtualization if supported.
+    new VM in UTM. This can enable nested virtualization if your machine
+    supports it.
 
 - **VirtualBox**
   
@@ -138,7 +152,7 @@ SSH for development. Most modern operating systems ships with a SSH client,
 and you can use your favorite terminal emulator (like Windows Terminal) to
 connect to your VM.
 
-### Prepare for Kernel Compilation
+### Prepare for kernel compilation
 
 > The following steps assume you are running Ubuntu 24.04.
 
@@ -177,7 +191,7 @@ SSH for development (like VSCode).
 
 # Kernel Compilation
 
-### Configure a kernel
+### Configure your kernel
 
 You should clone the provided QEMU scripts and kernel config and the copy
 the config over:
@@ -208,7 +222,7 @@ Clean the kernel source directory to prepare for compilation:
 make clean
 ```
 
-### Compile a kernel
+### Compile your kernel
 
 We can now compile the kernel. Best practice when compiling the kernel is
 to parallelize the build, one thread per available core plus one. The below
@@ -265,8 +279,8 @@ and then press X. This will force QEMU to quit.
 
 # Submit Your Result
 
-This is an easy one - you just need to submit to this **[form](https://docs.google.com/forms/d/e/1FAIpQLScGT0yraO3Y4nfpJaF033hxz8F4ZNoMkycOj4qbsYJQNYsPIw/viewform?usp=dialog)** the output from the
-following command:
+This is an easy one - you just need to submit to this **[form](https://docs.google.com/forms/d/e/1FAIpQLScGT0yraO3Y4nfpJaF033hxz8F4ZNoMkycOj4qbsYJQNYsPIw/viewform?usp=dialog)**
+with the output from the following command:
 
 ```bash
 # in your VM/QEMU
