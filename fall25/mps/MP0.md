@@ -2,7 +2,7 @@
 
 **Assignment Due**: See the [homepage](https://cs423-uiuc.github.io/fall25/)
 
-**Last Updated**: Aug. 26th, 2025
+**Last Updated**: Aug. 28th, 2025
 
 This document will guide you through your MP0 for CS 423 Operating System
 Design. It will help you prepare an environment for upcoming MPs.
@@ -96,9 +96,14 @@ current WSL 2 VM and various security features.
   instruction on how to set it up is available at
   https://learn.microsoft.com/en-us/windows/wsl/install.
 
-  > If you are running Windows Pro/Enterprise, please ensure that nested
-    virtualization is enabled. You can enable nested
-    virtualization using this guide: https://github.com/chinrw/wsl-qemu-kvm.
+  Then, run the following command in your WSL 2 shell:
+
+  ```bash
+  sudo mkdir /lib/modules
+  ```
+
+  If you are running Windows Pro/Enterprise, you can enable nested
+  virtualization using this guide: https://github.com/chinrw/wsl-qemu-kvm.
   
   > After setting it up, you can go directly to the next section.
 
@@ -106,10 +111,9 @@ current WSL 2 VM and various security features.
   
   VirtualBox is a VM hypervisor developed by Oracle. You can download it at
   https://www.virtualbox.org/.
-
-  > Please ensure that nested virtualization is enabled. You can enable nested
-    virtualization using this guide:
-    https://www.virtualbox.org/manual/topics/AdvancedTopics.html#nested-virt.
+  
+  You can enable nested virtualization using this guide:
+  https://www.virtualbox.org/manual/topics/AdvancedTopics.html#nested-virt.
 
 **macOS**:
 
@@ -118,20 +122,19 @@ If you are using ARM-based Mac, we recommend UTM.
 - **UTM**:
 
   UTM is a VM hypervisor available for free on Homebrew or its GitHub
-  repository (https://github.com/utmapp/UTM).
+  repository at https://github.com/utmapp/UTM.
 
-  > Please ensure that you select "Use Apple Virtualization" while creating a
-    new VM in UTM. This can enable nested virtualization if your machine
-    supports it.
+  Please ensure that you select "Use Apple Virtualization" while creating a
+  new VM in UTM. This can enable nested virtualization if your machine
+  supports it.
 
 - **VirtualBox**
   
   VirtualBox is a VM hypervisor developed by Oracle. You can download it at
   https://www.virtualbox.org/.
-
-  > Please ensure that nested virtualization is enabled. You can enable nested
-    virtualization using this guide:
-    https://www.virtualbox.org/manual/topics/AdvancedTopics.html#nested-virt.
+  
+  You can enable nested virtualization using this guide:
+  https://www.virtualbox.org/manual/topics/AdvancedTopics.html#nested-virt.
 
 **Linux**:
 
@@ -143,8 +146,8 @@ If you are using ARM-based Mac, we recommend UTM.
 Then, create a virtual machine and install Ubuntu Server 24.04. You can download
 the distro image at:
 
-  - x86: https://mirror.us-midwest-1.nexcess.net/ubuntu-releases/24.04.3/ubuntu-24.04.3-live-server-amd64.iso
-  - ARM: https://cdimage.ubuntu.com/releases/24.04/release/ubuntu-24.04.3-live-server-arm64.iso
+  - x86: https://ubuntu.com/download/server
+  - ARM: https://ubuntu.com/download/server/arm
   
 Ubuntu Server does not come with a GUI. We recommend you check the "Install
 OpenSSH Server" option during the installation and connect to your VM using
