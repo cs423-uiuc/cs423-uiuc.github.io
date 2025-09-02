@@ -243,9 +243,9 @@ make -j`nproc` LOCALVERSION=-$NETID
   several minutes to a few hours. You may want to plug-in your laptop and
   put your PC into high performance mode if you want to make it faster.
 
-> If you are using your own distro with gcc > 15, the default `-std=c23`
-  option will break the build. Switch to gcc <= 14 or patch the kernel by
-  yourself.
+> If you are using your own distro with gcc >= 15, the default `-std=c23`
+  option will break the build. It's recommended to build in docker environment
+  then copy the directory to host environment.
 
 Upon successful compilation, you will have new kernel image (a file called
 `vmlinux`) built in your kernel directory.
