@@ -77,17 +77,17 @@ result, your kernel will run much slower.
 
 Modern Windows PCs often ships with a Hyper-V hypervisor, which can interfere
 all other third-party VM hypervisors, to support various security features
-like VBS and HVCI. In this case, we recommend WSL 2 only. However, keep in
-mind that if you are using Windows Home, you won't be able to enable nested
-virtualization in your WSL 2 VM as only Windows Pro/Enterprise includes the
-full support for Hyper-V.
+like VBS and HVCI. In this case, we recommend WSL 2 only. **However, keep in
+mind that if you are using Windows 10, you won't be able to enable nested
+virtualization in your WSL 2 VM.**
 
 Checking the status or disabling the Hyper-V hypervisor is actually quite
 complicated. If you are interested, you can follow this guide:
-https://community.broadcom.com/vmware-cloud-foundation/discussion/how-to-disable-hyper-v-in-windows-11-24h2. In the case that you are using
-Windows Home or you want to use third-party VM hypervisors, you may want to
-disable it. However, you are warned that you will lose access to your
-current WSL 2 VM and various security features.
+https://community.broadcom.com/vmware-cloud-foundation/discussion/how-to-disable-hyper-v-in-windows-11-24h2 (do not follow Step 6 unless you
+are using Win11 24H2). In the case that you are using Windows 10 or you
+want to use third-party VM hypervisors, you may want to disable it.
+However, you are warned that you will lose access to your current WSL 2 VM
+and various security features.
 
 - **Windows Subsystem for Linux 2 (WSL 2) on Hyper-V**:
 
@@ -102,8 +102,8 @@ current WSL 2 VM and various security features.
   sudo mkdir /lib/modules
   ```
 
-  If you are running Windows Pro/Enterprise, you can enable nested
-  virtualization using this guide: https://github.com/chinrw/wsl-qemu-kvm.
+  If you are running Windows 11, you can enable nested virtualization using
+  this guide: https://github.com/chinrw/wsl-qemu-kvm.
   
   > After setting it up, you can go directly to the next section.
 
@@ -258,6 +258,10 @@ the following command (**1-2 minutes**):
 ```bash
 ../qemu-script/cs423-q
 ```
+
+> If QEMU complains about KVM and refuses to start, that means you are
+  having issues on KVM/nested virtualization. Make sure you follow the
+  guide. You can also use `-t` flag to force software virtualization.
 
 If everything is correct, you should have a shell inside your VM. You can
 double check the kernel in the VM the command below and should see your own
