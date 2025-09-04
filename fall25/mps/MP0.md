@@ -164,7 +164,7 @@ the standard development tools (**2-5 minutes**):
 
 ```bash
 sudo apt-get update
-sudo apt-get install git bc libncurses-dev wget busybox libssl-dev libelf-dev dwarves flex bison build-essential
+sudo apt-get install git bc libncurses-dev wget busybox libssl-dev libelf-dev dwarves flex bison build-essential python3
 ```
 
 Install QEMU (**1-3 minutes**):
