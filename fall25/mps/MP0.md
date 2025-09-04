@@ -2,7 +2,7 @@
 
 **Assignment Due**: See the [homepage](https://cs423-uiuc.github.io/fall25/)
 
-**Last Updated**: Aug. 28th, 2025
+**Last Updated**: Sep. 4th, 2025
 
 This document will guide you through your MP0 for CS 423 Operating System
 Design. It will help you prepare an environment for upcoming MPs.
@@ -261,7 +261,11 @@ the following command (**1-2 minutes**):
 ../qemu-script/cs423-q
 ```
 
-> If QEMU complains about KVM and refuses to start, that means you are
+> If you got permission denied when trying to start QEMU, make sure you
+  have added yourself to KVM group (`sudo usermod -a -G kvm your_username`).
+  You can also use `sudo`.
+
+> If QEMU throws error about KVM and refuses to start, that means you are
   having issues on KVM/nested virtualization. Make sure you follow the
   guide. You can also use `-t` flag to force software virtualization.
 
@@ -295,3 +299,7 @@ with the output from the following command:
 # in your VM/QEMU
 dmesg | grep 'Linux version'
 ```
+
+> We kindly requires you to login with your Illinois credentials to
+  make sure the submitter is you. **Please do not ask for permission.**
+  Please check this out: https://help.uillinois.edu/TDClient/42/UIUC/Requests/ServiceDet?ID=135
