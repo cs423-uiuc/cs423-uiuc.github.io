@@ -238,7 +238,8 @@ make -j`nproc` LOCALVERSION=-$NETID
 ```
 
 > Change the above line to replace `$NETID` with your NetID.
-  The `LOCALVERSION` field is appended to the name of your kernel.
+  `$` denotes environment variables in shell and should also be removed
+  The `LOCALVERSION` field will be appended to the name of your kernel.
 
 > Depends on how powerful your PC is, this step may take anywhere from
   several minutes to a few hours. You may want to plug-in your laptop and
