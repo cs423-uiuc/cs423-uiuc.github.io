@@ -2,7 +2,7 @@
 
 **Assignment Due**: See the [homepage](https://cs423-uiuc.github.io/fall25/)
 
-**Last Updated**: Aug. 28th, 2025
+**Last Updated**: Sep. 4th, 2025
 
 This document will guide you through your MP0 for CS 423 Operating System
 Design. It will help you prepare an environment for upcoming MPs.
@@ -77,17 +77,17 @@ result, your kernel will run much slower.
 
 Modern Windows PCs often ships with a Hyper-V hypervisor, which can interfere
 all other third-party VM hypervisors, to support various security features
-like VBS and HVCI. In this case, we recommend WSL 2 only. However, keep in
-mind that if you are using Windows Home, you won't be able to enable nested
-virtualization in your WSL 2 VM as only Windows Pro/Enterprise includes the
-full support for Hyper-V.
+like VBS and HVCI. In this case, we recommend WSL 2 only. **However, keep in
+mind that if you are using Windows 10, you won't be able to enable nested
+virtualization in your WSL 2 VM.**
 
 Checking the status or disabling the Hyper-V hypervisor is actually quite
 complicated. If you are interested, you can follow this guide:
-https://community.broadcom.com/vmware-cloud-foundation/discussion/how-to-disable-hyper-v-in-windows-11-24h2. In the case that you are using
-Windows Home or you want to use third-party VM hypervisors, you may want to
-disable it. However, you are warned that you will lose access to your
-current WSL 2 VM and various security features.
+https://community.broadcom.com/vmware-cloud-foundation/discussion/how-to-disable-hyper-v-in-windows-11-24h2 (do not follow Step 6 unless you
+are using Win11 24H2). In the case that you are using Windows 10 or you
+want to use third-party VM hypervisors, you may want to disable it.
+However, you are warned that you will lose access to your current WSL 2 VM
+and various security features.
 
 - **Windows Subsystem for Linux 2 (WSL 2) on Hyper-V**:
 
@@ -102,8 +102,8 @@ current WSL 2 VM and various security features.
   sudo mkdir /lib/modules
   ```
 
-  If you are running Windows Pro/Enterprise, you can enable nested
-  virtualization using this guide: https://github.com/chinrw/wsl-qemu-kvm.
+  If you are running Windows 11, you can enable nested virtualization using
+  this guide: https://github.com/chinrw/wsl-qemu-kvm.
   
   > After setting it up, you can go directly to the next section.
 
@@ -163,7 +163,8 @@ Start configuring your machine for kernel module development by downloading
 the standard development tools (**2-5 minutes**):
 
 ```bash
-sudo apt-get install git bc libncurses-dev wget busybox libssl-dev libelf-dev dwarves flex bison build-essential
+sudo apt-get update
+sudo apt-get install git bc libncurses-dev wget busybox libssl-dev libelf-dev dwarves flex bison build-essential python3
 ```
 
 Install QEMU (**1-3 minutes**):
@@ -237,7 +238,8 @@ make -j`nproc` LOCALVERSION=-$NETID
 ```
 
 > Change the above line to replace `$NETID` with your NetID.
-  The `LOCALVERSION` field is appended to the name of your kernel.
+  `$` denotes environment variables in shell and should also be removed
+  The `LOCALVERSION` field will be appended to the name of your kernel.
 
 > Depends on how powerful your PC is, this step may take anywhere from
   several minutes to a few hours. You may want to plug-in your laptop and
@@ -258,6 +260,14 @@ the following command (**1-2 minutes**):
 ```bash
 ../qemu-script/cs423-q
 ```
+
+> If you got permission denied when trying to start QEMU, make sure you
+  have added yourself to KVM group (`sudo usermod -a -G kvm your_username`).
+  You can also use `sudo`.
+
+> If QEMU throws error about KVM and refuses to start, that means you are
+  having issues on KVM/nested virtualization. Make sure you follow the
+  guide. You can also use `-t` flag to force software virtualization.
 
 If everything is correct, you should have a shell inside your VM. You can
 double check the kernel in the VM the command below and should see your own
@@ -289,3 +299,7 @@ with the output from the following command:
 # in your VM/QEMU
 dmesg | grep 'Linux version'
 ```
+
+> We kindly requires you to login with your Illinois credentials to
+  make sure the submitter is you. **Please do not ask for permission.**
+  Please check this out: https://help.uillinois.edu/TDClient/42/UIUC/Requests/ServiceDet?ID=135
