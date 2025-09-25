@@ -2,7 +2,7 @@
 
 **Assignment Due**: Oct. 2rd at 11:59 PM CT
 
-**Last Updated**: Sep. 10th
+**Last Updated**: Sep. 24th
 
 This document will guide you through your MP1 for CS 423 Operating System Design. In this MP, you will learn how to create a Linux kernel module from sketch.
 
@@ -151,7 +151,9 @@ flowchart TB
 
 **Step 4:** You will also need to implement the **callback functions for read and write** in the entry of the Proc Filesystem you created. Keep the format of the registration string simple. It should be a decimal string able to be parsed by the `kstrtoint()` function. We suggest that a user space application should be able to register itself by simply writing the PID to the Proc Filesystem entry you created (e.g `echo "423" > /proc/mp1/status`). The callback functions will read and write data from and to the user space so you need to use `copy_from_user()` and `copy_to_user()`. You may just echo back the PID recorded at this stage. You can use `snprintf()` to format a string.
 
-> We assume pids written to `/proc/mp1/status` have no duplication
+> We assume pids written to `/proc/mp1/status` have no duplication.
+
+> Note on `read()` implementation: implementing `read()` call can be particularly challenging, as you need to deal with offsets. Kernel provides a nice interface to help you iterate through the linked list and make your life much easier to implement the `read()` operation.
 
 **Step 5:** At this point you should be able to write a **simple user space application that registers itself** in the module. Your test application can use the function `getpid()` to obtain its PID. You can open and write to the Proc Filesystem entry using `fopen()` and `fprintf()`. You can read the entry using `getc()` and `putc()`. Your program should run for at least 10 seconds so that the kernel module can update the user time for it. **You can find the starter code in `userapp.c` of your GitHub submission repository.**
 
@@ -160,6 +162,8 @@ flowchart TB
 **Step 7:** Next you will need to implement the **work function**. At the timer expiration, the timer handler must use the Workqueue API to schedule the work function to be executed as soon as possible. To test your code you can use `printk()` to print to the console every time the work function is executed by the workqueue worker thread. You can see these messages by using the command `dmesg` in the command line. Definitions for Kernel Workqueue are available in `linux/workqueue.h`.
 
 **Step 8:** Now, you will need to implement the **updates to the CPU Times** for the processes in the Linked List. You may use the helper function `int get_cpu_use(int pid, unsigned long* cpu_value)` as a starting point. **The function is available in `mp1_given.h` of your GitHub submission repository.** This function returns `0` if the value was successfully obtained and returned through the parameter `cpu_value`, otherwise it returns `-1`. As part of the update process, you will need to use locks (definitions available in `linux/mutex.h`) to protect the Linked List and any other shared variables accessed by the three contexts (kernel, process, interrupt context). The advantage of using a two half approach is that in most cases the locking will be placed in the **work function** and not in the timer interrupt. If a registered process terminates, `get_cpu_use` will return `-1`. In this case, the registered process should be removed from the linked list.
+
+> Note on consistency: when an update happens between `read()` calls, it is acceptable to read slightly inconsistent data. However, your kernel must stay robust and should give data in correct format.
 
 **Step 9:** Finally you should check for **memory leaks** and make sure that everything is **properly released** before the module is unloaded. Please keep in mind that you need to stop any asynchronous entity running (e.g Timers, Workqueues, etc.) before releasing other resources. At this point, your kernel module should be largely done. Now you can implement the test application and have some additional testing of your code.
 
