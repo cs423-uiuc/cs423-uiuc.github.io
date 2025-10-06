@@ -1,8 +1,8 @@
-# CS423 Fall 2024 MP2: Rate-Monotonic CPU Scheduling
+# CS423 Fall 2025 MP2: Rate-Monotonic CPU Scheduling
 
-**Assignment Due**: Oct. 29th at 11:59 PM CT
+**Assignment Due**: Oct. 28th at 11:59 PM CT
 
-**Last Updated**: Oct. 1th
+**Last Updated**: Oct. 6th
 
 This document will guide you through your MP2 for CS 423 Operating System Design. In this MP, you will learn how to create a simple Linux kernel scheduler from sketch.
 
@@ -10,7 +10,7 @@ This MP will require you to read, write and debug C-based kernel code in depth. 
 
 # Table of Contents
 
-- [CS423 Fall 2024 MP2: Rate-Monotonic CPU Scheduling](#cs423-fall-2024-mp2-rate-monotonic-cpu-scheduling)
+- [CS423 Fall 2025 MP2: Rate-Monotonic CPU Scheduling](#cs423-fall-2025-mp2-rate-monotonic-cpu-scheduling)
 - [Table of Contents](#table-of-contents)
 - [Overview](#overview)
 - [Before you start](#before-you-start)
@@ -388,9 +388,9 @@ Here are some advices:
 
 Here are the steps to accept and submit your MP.
 
-- Open the link [classrooms](https://classroom.github.com/a/bN8FEXqy) and login using your GitHub account.
+- Open the link [classrooms](https://classroom.github.com/a/xg8yDiB2) and login using your GitHub account.
 - Find your name in the student list and click it to accept the assignment. Please double-check your name and email address before accepting the assignment (If you choose other’s name by mistake, please contact TA).
-- A repo named `cs423-uiuc/mp2-<GitHubID>` will be automatically created for you with the starter code in it.
+- A repo named `cs423-uiuc-fall25/mp2-<GitHubID>` will be automatically created for you with the starter code in it.
 - Your kernel module must be compiled to `mp2.ko`, and your test application must be compiled to `userapp`. Push your code to your repo before the deadline. We will grade your last commit before the deadline. 
 - Please also edit the `README` file to briefly describe how you implement the functionalities. e.g. how the YIELD function works, how the admission control works, etc. You can also describe any design decisions you made. This will help us understand your code better and give you more points. Please upload the `README` to your GitHub repo.
 
