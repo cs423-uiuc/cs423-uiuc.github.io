@@ -193,10 +193,10 @@ module is uninitialized. The buffer needs to be virtually contiguous, but does n
 This means `vmalloc()` kernel function can be used instead of `kmalloc()` for this operation. As physically
 contiguous memory is scarce, **we require you to use `vmalloc()` as part of this MP.** The buffer memory size shall
 be larger than or equal to 128 x 4 KB. In order to disable management of allocated pages by the virtual memory
-system, the PG_reserved bit needs to be set.
-**Updated Nov 11**: you may want to initialize the buffer with -1 which is expected initial value from `monitor` program introduced later.
+system, the PG_reserved bit needs to be set. You may want to initialize the buffer with -1 which is expected initial value
+from `monitor` program introduced later.
 
-7) Your kernel module will use a delayed work queue <!-- (alternatively you can use a timer and a kernel thread) --> that
+1) Your kernel module will use a delayed work queue <!-- (alternatively you can use a timer and a kernel thread) --> that
 periodically measures the major and minor page fault counts, and CPU utilization of all registered user processes
 and saves the measured information to the memory buffer. We have provided the function `get_cpu_use()` in
 `mp3_given.h` that returns the number of major and minor page faults and CPU utilization in expressed in jiffies.
@@ -211,9 +211,9 @@ requested process.
     (b) minor fault count, 
     (c) major fault count, 
     and (d) CPU utilization (`s_time` + `u_time`). The work handler only writes one sample each time. 
-    In each sample, (b), (c), and (d) are the sum of that of all the registered processes **within a sampling period (1/20 seconds)** (updated Nov 11).
+    In each sample, (b), (c), and (d) are the sum of that of all the registered processes **within a sampling period (1/20 seconds)**.
 
-8) Your kernel module should use a **character device driver** to allow user-level process to map the shared memory
+1) Your kernel module should use a **character device driver** to allow user-level process to map the shared memory
 buffer to its address space. Only three callback functions of the Linux character device driver are used: `open`,
 `close`, and `mmap`; where open and close callback handlers are defined as empty functions (i.e., function defined
 but does not have any valid statement to execute).
@@ -231,7 +231,7 @@ but does not have any valid statement to execute).
     <check the created device’s major number>
     $ mknod node c 423 0
     ```
-9) The buffer memory is mapped into the virtual address space of a user process upon request (i.e., by the mmap()
+1) The buffer memory is mapped into the virtual address space of a user process upon request (i.e., by the mmap()
 callback). This is done by mapping the physical pages of the buffer to the virtual address space of a requested
 user process. For each page of the buffer, the following two kernel functions are used. First, the `vmalloc_to_pfn(virtual_address)` is used to get the physical page address of a virtual page of the buffer. Second,
 `remap_pfn_range()` is used to map a virtual page of a user process to a physical page (which is obtained by
