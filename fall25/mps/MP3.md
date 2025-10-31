@@ -25,7 +25,7 @@ Table of Contents
 
 ### What you need
 
-- You should have successfully completed MP1 and MP2. MP3 will use prof filesystem and list introduced in MP1.
+- You should have successfully completed MP1 and MP2. MP3 will use proc filesystem and list introduced in MP1.
 - You should be able to read, write and debug program codes written in C language.
 - (Recommended) You may have a code editor that supports Linux kernel module development - for example, VSCode, Neovim, or GNU Emacs (or Nano).
 - (Recommended) You may use the [Linux Kernel Documentation](https://www.kernel.org/doc/html/v5.15/index.html) to search the Linux kernel documents for concepts and high-level descriptions.
