@@ -2,7 +2,7 @@
 
 **Assignment Due**: Nov. 20th at 11:59 PM CT
 
-**Last Updated**: Oct. 30th
+**Last Updated**: Nov. 14th
 
 Table of Contents
 - [CS423 Fall 2025 MP3: Virtual Memory Page Fault Profiler](#cs423-fall-2025-mp3-virtual-memory-page-fault-profiler)
@@ -300,11 +300,13 @@ parameters are used for the work process 5. We will use N instances of the work 
 
 Work process 5: 200MB Memory, Random Locality Access, and 10,000 accesses per iteration
 
-Plot a graph named `case_2.png` where x-axis is N (i.e., 5, 11, 16, 20, 22) and y-axis is the total utilization of all N copies of the work
+Plot a graph named `case_2.png` where x-axis is N (i.e., 5, 11, 16, 20, 22/25 **(Updated Nov. 14: x86 uses 22, ARM uses 25)**) and y-axis is the total utilization of all N copies of the work
 process 5.
 Analyze the quantitative differences between these ~~three~~ data points (where N is 5, 11, 16, 20, 22) and discuss where
 such differences come from. Both the utilization and the completion time of the work processes are points of interests
 in this analysis.
+
+Please clearly state that you used ARM-based system in your README file.
 
 **Setting up swap space**
 
@@ -335,24 +337,36 @@ mkswap /dev/sda
 swapon /dev/sda
 ```
 
-**Setup for AArch64**
+**Setup for AArch64 (Updated Nov. 14)**
 
-If you are using aarch64, first set `CONFIG_BLK_DEV_LOOP=y` and rebuild your
-5.15 kernel, and then launch your QEMU with:
+1. We have updated the q-script. Please pull the q-script repository again. Go to your `qemu-script` folder, and run `git pull`.
+2. Create the swap disk image. In the `qemu-script` folder, run `qemu-img create -f raw swap.raw 2G`.
+3. We now need to recompile the kernel. Go to your `linux-5.15.165` folder, run the following:
 
-```bash
-MEMORY=6144 ../qemu-script/cs423-q
+```
+scripts/config --enable CONFIG_VIRTIO_BLK
+make olddefconfig
+make -j`nproc`
 ```
 
-Inside QEMU, do the following:
+4. Boot with an extra drive attached. Run `EXTRA_DRIVE=../qemu-script/swap.raw ../qemu-script/cs423-q`, which `EXTRA_DRIVE` is the swap disk path. Adjust if necessary.
+5. You have now booted the kernel. Run the following to enable swap:
 
-```bash
-dd if=/dev/zero of=/swap_file bs=1MB count=2048
-chmod 600 /swap_file
-mkswap /swap_file
-losetup /dev/loop0 /swap_file
-swapon /dev/loop0
 ```
+mkswap /dev/vda
+swapon /dev/vda
+```
+
+6. Check if the swap is enabled. If `Swap` shows 2047 instead of 0, that means you have successfully enabled swapping.
+
+```
+root@q:/home/paizhang/linux-5.15.165# free -m
+               total        used        free      shared  buff/cache   available
+Mem:            3925         115        3871           0          18        3810
+Swap:           2047           0        2047
+```
+
+7. **To better observe thrashing, please use 25 instead of 22 in the case study 2.** Please clearly state that you used ARM-based system in your README file.
 
 ### 6 Software Engineering
 
