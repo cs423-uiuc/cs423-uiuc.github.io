@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>CS 423 -- Operating System Design (Spring 2026)</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="423_logo.png">
+</head>
+
+<body class="main">
+
+    <h1>CS 423: Operating System Design</h1>
+    <h2 class="h1sub">Spring 2026</h2>
+
+    <p></p>
+    <dl>
+        <dt>
+    <b>Instructor</b>
+  </dt>
+        <dd>
+          <a href="https://siebelschool.illinois.edu/about/people/all-faculty/rkesavan">Ram Kesavan</a>
+          <br><a href="mailto:rkesavan@illinois.edu">rkesavan@illinois.edu</a>
+          <br> 3126 Siebel Center
+          <p></p>
+        </dd>
+
+        <dt><b>Lectures</b></dt>
+        <dd>
+            Tue/Thu 2:00-3:15pm
+            <br>
+            1310 Digital Computer Laboratory
+            <p></p>
+        </dd>
+
+        <dt><b>Teaching Assistant</b></dt>
+        <dd>
+	    <a href="mailto:aaabbb@illinois.edu">Aaa Bbb</a>
+	    <br>
+            <a href="mailto:cccddd@illinois.edu">Ccc Ddd</a>
+            <p></p>
+      </dd>
+
+      <dt><b>Office Hours</b></dt>
+      <dd>
+      <a href="https://queue.illinois.edu/q/CS423">Queue</a>
+      <br>
+	    Mon: X-Ypm, Aaa, xxxx Siebel Center
+	    <br>
+	    Tue: 3:15-4pm, Kesavan, 1310 Digital Computer Laboratory
+	    <br>
+	    Tue: X-Ypm, Aaa, xxxx Siebel Center
+	    <br>
+	    Wed: X-Ypm, Aaa, xxxx Siebel Center
+      <br>
+	    Thu: 3:15-4pm, Kesavan, 1310 Digital Computer Laboratory
+	    <br>
+	    Thu: X-Ypm, Aaa, xxxx Siebel Center
+	    <br>
+	    Fri: X-Ypm, Aaa, xxxx Siebel Center
+	    <br>
+	    Fri: X-Ypm, Aaa, xxxx Siebel Center
+      </dd>
+
+        <dt><b>Forums</b></dt>
+        <dd>
+          <a href="https://piazza.com/illinois/spring2026/cs423">Piazza</a>
+        </dd>
+    </dl>
+
+    <h2>Course Overview</h2>
+
+    <p>
+      This course introduces students to the next step in operating system design
+      (after CS 241 or equivalent).
+      Students will understand the main operating system functions in class and
+      analyze their implementation through a series of machine problems
+      that require modifications to operating system code.
+      Students will also be exposed to the concepts of virtual machines
+      and issues of distribution such distributed files systems
+      and map-reduce operators for distributed computation.
+      The course will conclude with a series of advanced topics.
+    </p>
+
+    <p>
+        Please contact the instructor if you have questions regarding the material or concerns about whether your background is suitable for the course.
+    </p>
+
+    <h2>Textbooks</h2>
+
+    <p> Course Text:
+      <ul>
+          <li>
+            <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/" target="_blank">Operating Systems: Three Easy Pieces</a>, Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau.
+          </li>
+      </ul>
+
+    </p>
+      The textbook is FREE (read Remzi and Andrea's blogpost:
+      <a href="http://from-a-to-remzi.blogspot.com/2014/01/the-case-for-free-online-books-fobs.html" target="_blank">Why
+          Textbooks Should be Free</a>).
+      You are expected to read the chapters of the textbook that are discussed in class.
+    </p>
+
+  <p>Optional Reading:</p>
+  <ul>
+      <li>
+          Virtual Machines, James E. Smith and Ravi Nair, Elsevier / Morgan Kaufmann, 2005
+      </li>
+      <li>
+          Linux Kernel Development (3rd Edition), Robert Love, 2010
+      </li>
+  </ul>
+
+  <p>
+      You may find the Linux Kernel Development book to be helpful for your MPs.
+  </p>
+
+
+  </p><h2>Course Schedule</h2>
+
+  <p> The following table outlines the schedule for the course.  We will
+  update it as the quarter progresses.
+
+  </p><p>
+  </p><center>
+  <table id="sched">
+
+  <tbody><tr>
+  <th>Date</th>
+  <th>Lecture</th>
+  <th>Readings</th>
+  <th>Homework</th>
+  <th>MP</th>
+  <th>C4 Reading</th>
+  </tr>
+
+  <tr>
+  <td align="center">1/20</td>
+  <td>
+      Course Intro (<a href="slides/01-syllabus.pdf" target="_blank">slides</a>)
+  </td>
+  <td>
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/dialogue-threeeasy.pdf" target="_blank">CH 1</a>,
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/intro.pdf" target="_blank">CH 2</a>
+  </td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>
+    <a href="https://cseweb.ucsd.edu/~wgg/CSE210/howtoread.html" target="_blank">Reading Papers</a>
+  </td>
+  </tr>
+
+  <tr>
+  <td align="center">1/22</td>
+  <td>Basic Concepts and Systems Programming (<a href="slides/02-review.pdf" target="_blank">slides</a>)
+ </td>
+  <td>
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf" target="_blank">CH 4</a>,
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/vm-intro.pdf" target="_blank">CH 13</a>
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/file-devices.pdf" target="_blank">CH 36</a>
+  </td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>  </td>
+  </tr>
+
+  <tr>
+  <td align="center"> </td>
+  <td bgcolor="#00AA00"><font color="white">Spring Break</font></td>
+  <td><a href="http://phdcomics.com/comics/archive.php/images/tellafriend.php?comicid=1568" target="_blank">Spring Break</a></td>
+  <td>&nbsp;</td>
+  <td> </td>
+  <td>Sleep. Zzzz.</td>
+  </tr>
+
+  <tr>
+  <td align="center">x/y</td>
+  <td> Midterm Review, Q&A (<a href="slides/15-midterm-review.pdf">slides</a>)</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td> </td>
+  </tr>
+
+  <tr>
+  <td align="center">x/y</td>
+  <td bgcolor="yellow">Midterm Exam (solution)</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td></td>
+  <td></td>
+  </tr>
+
+  <tr>
+  <td align="center">x/y</td>
+  <td>Midterm exam walkover</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td> </td>
+  <td> </td>
+  </tr>
+
+  <tr>
+  <td align="center">x/y</td>
+  <td bgcolor="yellow"> Final Exam</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  </td>
+  </tr>
+
+	  
+  </tbody></table>
+  </center>
+
+
+
+
+    <h2>Grading</h2>
+    <p>
+      The course will involve 5 machine problems, several homeworks, a midterm, and a final.
+      Unless otherwise noted by the instructor, all work in this course is to be completed independently.
+      If you are ever uncertain of how to complete an assignment,
+       you can go to office hours or engage in high-level discussions
+       about the problem with your classmates on the Piazza boards.
+    </p>
+
+    <p>
+      Grades will be assigned as follows:
+    </p>
+
+    <ul>
+        <li> <i>Machine Problems:</i> 5 MPs will collectively account for 50% of the grade, divided into 4%, 12%, 12%, 12%, and 10%. <b>All MPs should be solved individually.</b> <b>No late submissions are allowed.</b></li>
+        <li> <i>Midterm:</i> The midterm will be worth 20% of your grade.</li>
+        <li> <i>Final:</i> A final exam will be worth 20% of your grade.</li>
+        <li> <i>Participation:</i> Accounts for 10%. Includes Piazza and in-class discussion.</li>
+        <li> <i>4 Credit Section Only:</i> If you are registered for the four credit version of this course, you will be required to complete and 
+		<a href="https://docs.google.com/document/d/1i824NZ22QsIMRU4-6lf8IFa1ghgmvgY-DsLf_IcPaxo/edit" target="_blank">summarize</a> weekly literature readings that are relevant to the subject matter being discussed in class. Satisfactory completion of these readings will be necessary to receive full credit in homework and participation.</li>
+    </ul>
+
+    <h2>Course Expectations</h2>
+
+    <p>
+      The expectations for the course are that students will attend every class, do any readings assigned for class, and actively and constructively participate in class discussions. Class participation will be a measure of contributing to the discourse both in class, through discussion and questions, and outside of class through contributing and responding to the Piazza forum.
+    </p>
+
+    <p>
+      Out of respect for your classmates, I ask that you turn off all laptops, tablets, and phone screens for the duration of each class!
+    </p>
+
+    <p>
+      More information about course requirements will be made available leading up to the start of classes
+    </p>
+
+    <h2>Ethics Statement</h2>
+
+    <p>
+      This course will include topics related computer security and privacy. As part of this investigation we may cover technologies whose abuse could infringe on the rights of others. As computer scientists, we rely on the ethical use of these technologies. Unethical use includes circumvention of an existing security or privacy mechanisms for any purpose, or the dissemination, promotion, or exploitation of vulnerabilities of these services. Any activity outside the letter or spirit of these guidelines will be reported to the proper authorities and may result in dismissal from the class and possibly more severe academic and legal sanctions.
+    </p>
+
+    <h2>Academic Integrity Policy</h2>
+
+    <p>
+      The University of Illinois at Urbana-Champaign Student Code should also be considered as a part of this syllabus.
+      Students should pay particular attention to Article 1, Part 4: Academic Integrity.
+      Read the Code at the following URL: <a class="paperlink" href="http://studentcode.illinois.edu/" target="_blank">http://studentcode.illinois.edu/</a>.
+    </p>
+    <p>
+      Academic dishonesty may result in a failing grade.
+      Every student is expected to review and abide by the Academic Integrity Policy:
+      <a class="paperlink" href="http://studentcode.illinois.edu/" target="_blank">http://studentcode.illinois.edu/</a>.
+      Ignorance is not an excuse for any academic dishonesty.
+      It is your responsibility to read this policy to avoid any misunderstanding.
+      Do not hesitate to ask the instructor(s) if you are ever in doubt about what constitutes plagiarism,
+      cheating, or any other breach of academic integrity.
+    </p>
+
+    <h2>Students with Disabilities</h2>
+
+    <p>
+      To obtain disability-related academic adjustments and/or auxiliary aids,
+      students with disabilities must contact the course instructor and the as soon as possible.
+      To insure that disability-related concerns are properly addressed from the beginning,
+      students with disabilities who require assistance to participate in this class should
+      contact Disability Resources and Educational Services (DRES)
+      and see the instructor as soon as possible.
+      If you need accommodations for any sort of disability,
+      please speak to me after class, or make an appointment to see me,
+      or see me during my office hours. DRES provides students with academic accommodations,
+      access, and support services.
+      To contact DRES you may visit 1207 S. Oak St., Champaign, call 333-4603 (V/TDD),
+      or e-mail a message to <a href="mailto:disability@uiuc.edu">disability@uiuc.edu</a>.
+      Please refer to <a class="paperlink" href="http://www.disability.illinois.edu/" target="_blank">http://www.disability.illinois.edu/</a>.
+    </p>
+
+    <h2>Emergency Response Recommendations</h2>
+    <p>
+      Emergency response recommendations can be found at the following website:
+      <a class="paperlink" href="http://police.illinois.edu/emergency-preparedness/" target="_blank">http://police.illinois.edu/emergency-preparedness/</a>.
+        I encourage you to review this website and the campus building floor plans website
+        within the first 10 days of class: <a class="paperlink" href="http://police.illinois.edu/emergency-preparedness/building-emergency-action-plans/" target="_blank">http://police.illinois.edu/emergency-preparedness/building-emergency-action-plans/</a>.
+    </p>
+
+    <h2>Family Educational Rights and Privacy Act (FERPA)</h2>
+
+    <p>
+      Any student who has suppressed their directory information pursuant to
+      Family Educational Rights and Privacy Act (FERPA) should self-identify
+      to the instructor to ensure protection of the privacy of their attendance
+      in this course.
+      See <a class="paperlink" href="http://registrar.illinois.edu/ferpa" target="_blank">http://registrar.illinois.edu/ferpa</a> for more information on FERPA.
+    </p>
+
+    <h2>CS Values and Code of Conduct</h2>
+    <p>
+    All members of the Illinois Computer Science department -- faculty, staff, and students -- are expected to adhere to the
+            <a href="https://cs.illinois.edu/about/values" target="_blank">CS Values and Code of Conduct</a>.
+        <a href="https://cs.illinois.edu/about/cs-cares" target="_blank">The CS CARES Committee</a> is available to serve as a resource
+            to help people who are concerned about or experience a potential violation of the Code.
+        If you experience such issues, <a href="https://cs.illinois.edu/about/cs-cares/contact" target="_blank">please contact the CS CARES Committee</a>.
+        I am also available for issues related to this class.
+    </p>
+
+    <h2>Credit</h2>
+
+    <p>
+      The course is designed by <a class="paperlink" href="https://adambates.org/" target="_blank">Professor Adam Bates</a>
+      who taught it during 2017--2019.
+    </p>
+
+    <div class="footer">
+        <hr><a href="mailto:tyxu@illinois.edu">rkesavan@illinois.edu</a>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>CS 423 -- Operating System Design (Spring 2026)</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="423_logo.png">
+</head>
+
+<body class="main">
+
+    <h1>CS 423: Operating System Design</h1>
+    <h2 class="h1sub">Spring 2026</h2>
+
+    <p></p>
+    <dl>
+        <dt>
+    <b>Instructor</b>
+  </dt>
+        <dd>
+          <a href="https://siebelschool.illinois.edu/about/people/all-faculty/rkesavan">Ram Kesavan</a>
+          <br><a href="mailto:rkesavan@illinois.edu">rkesavan@illinois.edu</a>
+          <br> 3126 Siebel Center
+          <p></p>
+        </dd>
+
+        <dt><b>Lectures</b></dt>
+        <dd>
+            Tue/Thu 2:00-3:15pm
+            <br>
+            1310 Digital Computer Laboratory
+            <p></p>
+        </dd>
+
+        <dt><b>Teaching Assistant</b></dt>
+        <dd>
+	    <a href="mailto:aaabbb@illinois.edu">Aaa Bbb</a>
+	    <br>
+            <a href="mailto:cccddd@illinois.edu">Ccc Ddd</a>
+            <p></p>
+      </dd>
+
+      <dt><b>Office Hours</b></dt>
+      <dd>
+      <a href="https://queue.illinois.edu/q/CS423">Queue</a>
+      <br>
+	    Mon: X-Ypm, Aaa, xxxx Siebel Center
+	    <br>
+	    Tue: 3:15-4pm, Kesavan, 1310 Digital Computer Laboratory
+	    <br>
+	    Tue: X-Ypm, Aaa, xxxx Siebel Center
+	    <br>
+	    Wed: X-Ypm, Aaa, xxxx Siebel Center
+      <br>
+	    Thu: 3:15-4pm, Kesavan, 1310 Digital Computer Laboratory
+	    <br>
+	    Thu: X-Ypm, Aaa, xxxx Siebel Center
+	    <br>
+	    Fri: X-Ypm, Aaa, xxxx Siebel Center
+	    <br>
+	    Fri: X-Ypm, Aaa, xxxx Siebel Center
+      </dd>
+
+        <dt><b>Forums</b></dt>
+        <dd>
+          <a href="https://piazza.com/illinois/spring2026/cs423">Piazza</a>
+        </dd>
+    </dl>
+
+    <h2>Course Overview</h2>
+
+    <p>
+      This course introduces students to the next step in operating system design
+      (after CS 241 or equivalent).
+      Students will understand the main operating system functions in class and
+      analyze their implementation through a series of machine problems
+      that require modifications to operating system code.
+      Students will also be exposed to the concepts of virtual machines
+      and issues of distribution such distributed files systems
+      and map-reduce operators for distributed computation.
+      The course will conclude with a series of advanced topics.
+    </p>
+
+    <p>
+        Please contact the instructor if you have questions regarding the material or concerns about whether your background is suitable for the course.
+    </p>
+
+    <h2>Textbooks</h2>
+
+    <p> Course Text:
+      <ul>
+          <li>
+            <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/" target="_blank">Operating Systems: Three Easy Pieces</a>, Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau.
+          </li>
+      </ul>
+
+    </p>
+      The textbook is FREE (read Remzi and Andrea's blogpost:
+      <a href="http://from-a-to-remzi.blogspot.com/2014/01/the-case-for-free-online-books-fobs.html" target="_blank">Why
+          Textbooks Should be Free</a>).
+      You are expected to read the chapters of the textbook that are discussed in class.
+    </p>
+
+  <p>Optional Reading:</p>
+  <ul>
+      <li>
+          Virtual Machines, James E. Smith and Ravi Nair, Elsevier / Morgan Kaufmann, 2005
+      </li>
+      <li>
+          Linux Kernel Development (3rd Edition), Robert Love, 2010
+      </li>
+  </ul>
+
+  <p>
+      You may find the Linux Kernel Development book to be helpful for your MPs.
+  </p>
+
+
+  </p><h2>Course Schedule</h2>
+
+  <p> The following table outlines the schedule for the course.  We will
+  update it as the quarter progresses.
+
+  </p><p>
+  </p><center>
+  <table id="sched">
+
+  <tbody><tr>
+  <th>Date</th>
+  <th>Lecture</th>
+  <th>Readings</th>
+  <th>Homework</th>
+  <th>MP</th>
+  <th>C4 Reading</th>
+  </tr>
+
+  <tr>
+  <td align="center">1/20</td>
+  <td>
+      Course Intro (<a href="slides/01-syllabus.pdf" target="_blank">slides</a>)
+  </td>
+  <td>
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/dialogue-threeeasy.pdf" target="_blank">CH 1</a>,
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/intro.pdf" target="_blank">CH 2</a>
+  </td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>
+    <a href="https://cseweb.ucsd.edu/~wgg/CSE210/howtoread.html" target="_blank">Reading Papers</a>
+  </td>
+  </tr>
+
+  <tr>
+  <td align="center">1/22</td>
+  <td>Basic Concepts and Systems Programming (<a href="slides/02-review.pdf" target="_blank">slides</a>)
+ </td>
+  <td>
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf" target="_blank">CH 4</a>,
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/vm-intro.pdf" target="_blank">CH 13</a>
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/file-devices.pdf" target="_blank">CH 36</a>
+  </td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>
+<!--
+    <a href="https://cacm.acm.org/magazines/2016/3/198874-lessons-learned-from-30-years-of-minix/fulltext" target="_blank">MINIX</a>
+-->
+  </td>
+  <!--
+  <td><a href="http://www.maizure.org/projects/evolution_x86_context_switch_linux/index.html" target="_blank">Linux context switch</a></td>
+  -->
+  </tr>
+
+  <!--
+  <tr>
+  <td align=center>4/8</td>
+  <td>(Monday)</a></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td><font color="red">PR 0 Due</font></td>
+  </tr>
+  -->
+
+  <tr>
+    <td align="center">9/2</td>
+    <td>The Kernel Abstraction (<a href="slides/03-kernel.pdf" target="_blank">slides</a>)
+    </td>
+    <td>
+      <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/cpu-mechanisms.pdf" target="_blank">CH 6</a>,
+    </td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>
+      <a href="https://dl.acm.org/doi/10.1145/361011.361061" target="_blank">UNIX</a>
+    </td>
+  </tr>
+
+  <tr>
+  <td align="center">9/4</td>
+  <td bgcolor="#FFCCCB">MP0 Walkthrough, Q&A (<a href="slides/04-mp0_tutorial.pdf" target="_blank">slides</a>) (Cathy and Peizhe)</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>
+      <a href="https://github.com/cs423-uiuc/cs423-uiuc.github.io/blob/master/fall25/mps/MP0.md" target="_blank">MP0 Out</a>
+  </td>
+  <td>
+<!--
+    <a href="https://dl.acm.org/citation.cfm?id=363143" target="_blank">THE OS</a>
+-->
+  </td>
+  </tr>
+
+  <!--
+  <tr>
+  <td align=center>10/4</td>
+  <td>(Friday)</a></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td><font color="red">PR 0 Due</font></td>
+  </tr>
+  -->
+
+  <!--
+  <tr>
+  <td align=center>10/7</td>
+  <td>(Monday)</a></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>
+    <font color="red">MP -1: Due</font>, MP 0: Out
+  </td>
+  <td><font color="red">PR 0 Due</font></td>
+  </tr>
+  -->
+
+
+<!--
+    <a href="https://dl.acm.org/doi/10.1145/361011.361061" target="_blank">UNIX</a>
+-->
+  </td>
+  <!--
+    <td><a href="https://www.sysnet.ucsd.edu/~voelker/class/cse120/signals.html" target="_blank">Hardware events</a></td>
+  -->
+  </tr>
+
+  <tr>
+  <td align="center">9/9</td>
+  <td>Interrupts (<a href="slides/04-interrupts.pdf" target="_blank">slides</a>),
+    The Programming Interface (<a href="slides/05-api.pdf" target="_blank">slides</a>)</td>
+  <td>
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/cpu-api.pdf" target="_blank">CH 5</a>,
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/vm-api.pdf" target="_blank">CH 14</a>
+  </td>
+  <td></td>
+  <td>&nbsp;</td>
+  <td>
+    <a href="https://dl.acm.org/doi/10.1145/2901318.2901341" target="_blank">Linux APIs</a>
+  </td>
+  </tr>
+
+  <tr>
+  <td align="center">9/11</td>
+  <td>Concurrency & Threads (<a href="slides/06-concurrency.pdf" target="_blank">slides</a>)</td>
+  <td>
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/threads-intro.pdf" target="_blank">CH 26</a>,
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/threads-api.pdf" target="_blank">CH 27</a>
+  </td>
+  <td>&nbsp;</td>
+  <td>
+      <a href="https://github.com/cs423-uiuc/cs423-uiuc.github.io/blob/master/fall25/mps/MP1.md" target="_blank">MP1 Out</a>
+  </td>
+  <td>
+<!--
+    <a href="https://dl.acm.org/doi/10.1145/121132.121151" target="_blank">Scheduler Activation</a>
+-->
+  </td>
+  </tr>
+
+  <tr>
+  <td align="center">9/16</td>
+  <td bgcolor="#FFCCCB">MP1 Walkthrough, Q&A (<a href="slides/07-mp1_tutorial.pdf" target="_blank">slides</a>) (Cathy)</td>
+  <td>&nbsp;</td>
+  <td></td>
+  <td>
+    <font color="red">MP0 Due</font>
+  </td>
+  <td>
+    <a href="https://tianyin.github.io/pub/cozart-cacm.pdf" target="_blank">Kconfig</a>
+  </td>
+  </tr>
+
+  <tr>
+  <td align="center">9/18</td>
+  <td>Synchronization I (<a href="slides/08-synchronization.pdf" target="_blank">slides</a>)</td>
+  <!--<td><a href="hw/hw2.html">Homework 2 Out</a></td>-->
+  <td>
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/threads-locks.pdf" target="_blank">CH 28</a>,
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/threads-locks-usage.pdf" target="_blank">CH 29</a>
+  </td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>
+<!--
+      <a href="https://dl.acm.org/doi/10.5555/1855741.1855760" target="_blank">Heisenbugs</a>
+-->
+  </td>
+  </tr>
+
+  <tr>
+  <td align="center">9/23</td>
+  <td>Synchronization II (<a href="slides/09-synchronization-OS.pdf" target="_blank">slides</a>)</td>
+  <td>
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/threads-cv.pdf" target="_blank">CH 30</a>,
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/threads-sema.pdf" target="_blank">CH 31</a>
+  </td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>
+      <a href="https://dl.acm.org/doi/10.5555/1855741.1855760" target="_blank">Heisenbugs</a>
+<!--
+      <a href="https://www.usenix.org/conference/osdi10/ad-hoc-synchronization-considered-harmful" target="_blank">Ad hoc sync</a>
+-->
+  </td>
+  </tr>
+
+  <!--
+  -->
+  <tr>
+  <td align="center">9/25</td>
+  <td>How to debug your kernel code? (Siyuan) (<a href="slides/10-kernel-debugging.pdf" target="_blank">slides</a>; <a href="https://illinois.zoom.us/rec/share/7wP7-YVbRJQi_l6tDEItfz6KJYEH9EgHJWrT6jvQAftqpngYcKvBClgrQVthmWGN.IboJ0jorhJZ6Czv7 target="_blank">recording</a>)</td>
+  <td>
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched-lottery.pdf" target="_blank">CH 9</a>,
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched-multi.pdf" target="_blank">CH 10</a>
+  </td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  </tr>
+
+  <!-- original deadline
+  <tr>
+  <td align=center>10/23</td>
+  <td>(Wednesday)</a></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td><font color="red">PR 1 Due</font></td>
+  </tr>
+  -->
+
+  <tr>
+  <td align="center">9/30</td>
+  <!-- <td><noa href="lectures/sema.pdf">Semaphores and Monitors</a>-->
+  <td>Scheduling (<a href="slides/11-scheduling.pdf" target="_blank">slides</a>)</td>
+  <td>
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched.pdf" target="_blank">CH 7</a>,
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched-mlfq.pdf" target="_blank">CH 8</a>
+  </td>
+  <td>
+  <!--
+  <font color="red">Project 1 Due</a>
+   -->
+  &nbsp;
+  </td>
+  <td>&nbsp;</td>
+  <td>
+      <a href="https://dl.acm.org/citation.cfm?id=2901326" target="_blank">Scheduler bugs</a>
+  </td>
+  </tr>
+
+  <!--
+  -->
+
+  <!--
+  -->
+  <tr>
+  <td align="center">10/2</td>
+  <td>Linux Scheduler (<a href="slides/12-linux-schedulers.pdf" target="_blank">slides</a>)</td>
+  <td>
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/vm-mechanism.pdf" target="_blank">CH 15</a>,
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/vm-segmentation.pdf" target="_blank">CH 16</a>,
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/vm-freespace.pdf" target="_blank">CH 17</a>
+  </td>
+  <td>&nbsp;</td>
+  <td><font color="red">MP1 Due</font></td>
+  <td>
+<!--
+      <a href="https://dl.acm.org/citation.cfm?id=1815970" target="_blank">Translation cache</a>
+-->
+  </td>
+  </tr>
+
+  <!--
+  -->
+
+  <tr>
+    <td align="center">10/7</td>
+    <td bgcolor="#FFCCCB">MP2 Walkthrough, Q&A (<a href="slides/mp2_tutorial.pdf">slides</a>)</a> (Peizhe)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a href="https://github.com/cs423-uiuc/cs423-uiuc.github.io/blob/master/fall25/mps/MP2.md" target="_blank">MP2 Out</a></td>
+    <td>
+	<a href="https://tianyin.github.io/pub/emt.pdf" target="_blank">Page table</a>
+    </td>
+    </tr> 
+
+  <tr>
+  <td align="center">10/9</td>
+  <td>Memory Management I (<a href="slides/13-memory-i.pdf">slides</a>)</td>
+  <td>
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/vm-paging.pdf" target="_blank">CH 18</a>
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/vm-tlbs.pdf" target="_blank">CH 19</a>,
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/vm-smalltables.pdf" target="_blank">CH 20</a>
+  </td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+  <td align="center">10/14</td>
+  <td>Memory Management II (<a href="slides/14-memory-ii.pdf" target="_blank">slides</a>)</td>
+  <td>
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys.pdf" target="_blank">CH 21</a>,
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys-policy.pdf" target="_blank">CH 22</a>,
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/vm-vax.pdf" target="_blank">CH 23</a>
+  </td>
+  <td>&nbsp; <!-- <a href="hw/hw3.html">Homework 3 Out</a> --></td>
+  <td>&nbsp;</td>
+  <td>
+    <a href="https://dl.acm.org/citation.cfm?id=358824" target="_blank">Mesa monitors</a>
+  </td>
+  </tr>
+
+    <!--
+    <tr>
+    <td align=center>10/19</td>
+    <td>(Wednesday)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font color="red">Project 1 Due</a></td>
+    </tr>
+    -->
+
+    <!--
+    <tr>
+    <td align=center>5/1</td>
+    <td><noa href="lectures/midreview.pdf">Midterm Review</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    </tr>
+    -->
+
+    <tr>
+    <td align="center">10/16</td>
+    <td>Memory Management III </td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>
+<!--
+        <a href="https://dl.acm.org/citation.cfm?id=358824" target="_blank">Mesa monitors</a>
+-->
+    </td>
+    </tr>   
+
+    <!--
+    -->
+    <tr>
+    <td align="center">10/21</td>
+    <td> Midterm Review, Q&A (<a href="slides/15-midterm-review.pdf">slides</a>)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>
+	    <a href="https://www.usenix.org/system/files/conference/osdi16/osdi16-kwon.pdf" target="_blank">Huge pages</a>
+    </td>
+    </tr>
+
+
+  <!--
+  <tr>
+  <td align=center>5/3</td>
+  <td>(Friday)</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td><a href="hw/hw3.html">HW 3 Out</a></td>
+  <td>&nbsp;</td>
+  </tr>
+  -->
+
+  <!--
+  <tr>
+  <td align=center>11/3</td>
+  <td bgcolor="#00AA00"><font color="white">Veteran's Day Holiday</font></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  </tr>
+  -->
+
+  <!--
+  <tr>
+  <td align=center>11/13</td>
+  <td>(Sunday)</td>
+  <td>&nbsp;</td>
+  <td><font color="red">Homework 3 Due</font></td>
+  <td>&nbsp;</td>
+  </tr>
+  -->
+
+  <!--
+  <tr>
+  <td align=center>5/13</td>
+  <td><i>(No lecture, work on project)</i></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  </tr>
+  -->
+
+  <!--
+  -->
+  <tr>
+  <td align="center">10/23</td>
+  <td bgcolor="yellow">Midterm Exam (<a href="slides/423_midterm_fall25_solution.pdf">solution</a>)</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td></td>
+  <td></td>
+  </tr>
+
+  <tr>
+  <td align="center">10/28</td>
+  <td>Midterm exam walkover</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td><font color="red">MP2 Due</font></td>
+  <td>
+	<a href="https://www.cl.cam.ac.uk/research/srg/netos/papers/2003-xensosp.pdf" target="_blank">Xen</a>
+  </td>
+  </tr>
+
+
+
+  <!--
+  <tr>
+  <td align=center>2/22</td>
+  <td bgcolor="#00AA00"><font color="white">Veteran's Day Holiday</font></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  </tr>
+  -->
+
+  <!-- I/O, device drivers -->
+
+  <!-- initial published deadline
+  <tr>
+  <td align=center>11/13</td>
+  <td>(Wednesday)</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td><font color="red">PR 2 Due</a></td>
+  </tr>
+  -->
+
+  <tr>
+    <td align="center">10/30</td>
+    <td bgcolor="#FFCCCB">MP3 Walkthrough, Q&A (<a href="slides/mp3_tutorial.pdf" target="_blank">slides</a>) (Peizhe)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a href="https://github.com/cs423-uiuc/cs423-uiuc.github.io/blob/master/fall25/mps/MP3.md" target="_blank">MP3 Out</a> </td>
+    <td>
+
+<!--
+      <a href="https://dl.acm.org/doi/10.1145/1165389.945462" target="_blank">Xen</a>
+-->
+    </td>
+  </tr>
+
+  <tr>
+    <td align="center">11/4</td>
+    <td>Virtualization I (<a href="slides/16-virt-intro.pdf" target="_blank">slides</a>)</td>
+    <td>
+      <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/vmm-intro.pdf" target="_blank">Appendix B</a>
+    </td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>
+	<!--
+      <a href="https://dl.acm.org/citation.cfm?id=1168860" target="_blank">SW/HW-based virt</a>
+	-->
+	<a href="https://www.usenix.org/conference/nsdi20/presentation/agache" target="_blank">Firecracker</a>
+    </td>
+  </tr>
+
+  <tr>
+    <td align="center">11/6</td>
+    <td>Virtualization II (<a href="slides/17-virt-ii.pdf" target="_blank">slides</a>)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+
+  <!--
+  -->
+	  
+  <tr>
+    <td align="center">11/11</td>
+	<td>File System I (<a href="slides/18-disk-sched.pdf" target="_blank">slides</a>)</a></td>
+    <td>
+		<a href="http://pages.cs.wisc.edu/~remzi/OSTEP/file-disks.pdf" target="_blank">CH 37</a>,
+        <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/file-intro.pdf" target="_blank">CH 39</a>,
+        <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/file-ssd.pdf" target="_blank">CH 44</a>
+	</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>
+	    <!--
+      <a href="https://dl.acm.org/citation.cfm?id=3132763" target="_blank">Containers</a>
+	    -->
+      <a href="https://dl.acm.org/citation.cfm?id=990" target="_blank">FFS</a>
+    </td>
+  </tr>
+
+  <tr>
+    <td align="center">11/13</td>
+    <td>Kernel Extension (<a href="slides/19-kernel-extension.pdf" target="_blank">slides</a>)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td></td>
+    <td>
+<!--
+      <a href="https://www.usenix.org/conference/nsdi20/presentation/agache" target="_blank">Firecracker</a>
+-->
+    </td>
+  </tr>
+
+  <tr>
+  <td align="center">11/18</td>
+  <td>File System II (<a href="slides/20-filesystems.pdf" target="_blank">slides</a>)</a></td>
+  <td>
+	  <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/file-implementation.pdf" target="_blank">CH 40</a>,
+      <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/file-ffs.pdf" target="_blank">CH 41</a>
+  </td>
+  <td>&nbsp;</td>
+  <td><a href="https://github.com/cs423-uiuc-fall25/rex-mp4-template" target="_blank">MP4 Out</a></td>
+  <td>
+    <a href="https://dl.acm.org/citation.cfm?id=121137" target="_blank">LFS</a>
+  </td>
+  </tr>
+
+  <!--
+  -->
+  <tr>
+    <td align="center">11/20</td>
+    <td bgcolor="#FFCCCB">MP4 Walkthrough, Q&A (Cathy)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+	<td><font color="red">MP 3: Due</font></td>
+   <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td align="center"> </td>
+    <td bgcolor="#00AA00"><font color="white">Fall Break</font></td>
+    <td><a href="http://phdcomics.com/comics/archive.php/images/tellafriend.php?comicid=1568" target="_blank">Fall Break</a></td>
+    <td>&nbsp;</td>
+    <td>Food.  Lots of it.</td>
+    <td>Sleep. Lots of it.</td>
+  </tr>
+
+  <tr>
+    <td align="center">12/2</td>
+    <td>File System III (<a href="slides/21-filesystems2.pdf" target="_blank">slides</a>)</td>
+    <td>
+      <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/file-journaling.pdf" target="_blank">CH 42</a>,
+      <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/file-lfs.pdf" target="_blank">CH 43</a>
+    </td>
+    <td>
+      <!--
+      <font color="blue"><a href="hw/hw4.html">HW 4 Out</a></font>
+        -->
+      &nbsp;
+    </td>
+    <td>&nbsp;</td>
+    <td>
+  		<a href="https://www.usenix.org/system/files/conference/osdi14/osdi14-paper-pillai.pdf" target="_blank">Crash consistency</a>
+    </td>
+  </tr>
+
+  <!--
+  <tr>
+  <td align=center>11/19</td>
+  <td><i>(Saturday)</i></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td><font color="red">Project 2 Due</font></td>
+  </tr>
+  -->
+
+  <!--
+  <tr>
+  <td align=center>11/19</td>
+  <td>FFS, LFS, and RAID</td>
+  <td>
+  <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/file-raid.pdf">Chapter 38</a>,
+  <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/file-ffs.pdf">Chapter 41</a>,
+  <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/file-lfs.pdf">Chapter 42</a>
+  </td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  </tr>
+  -->
+
+  <!--
+  <tr>
+  <td align=center>11/19</td>
+  <td>(Monday)</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td><font color=red>Project 2 Due</font></td>
+  </tr>
+  -->
+
+  <tr>
+  <td align="center">12/4</td>
+  <td bgcolor="yellow"> Final Exam</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  </td>
+  </tr>
+
+  <!--
+  <tr>
+  <td align=center>11/26</td>
+  <td><a href="lectures/multi.pdf">Multicore</a></td>
+  <td>
+  <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched-multi.pdf">CH 10</a>
+  </td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  </tr>
+  -->
+
+  <!--
+  <tr>
+  <td align=center>11/26</td>
+  <td><noa href="lectures/vm.pdf">Virtual Machine Monitors</a>
+  <td>
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/vmm-intro.pdf">Appendix B</a>
+  </td>
+  <td>&nbsp;
+  </td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  </tr>
+  -->
+
+
+
+  <!--
+  <tr>
+  <td align="center">11/17</td>
+  <td>Reliability techniques for Storage (<a href="slides/24-reliable-storage.pdf" target="_blank">slides</a>)</td>
+  <td>
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/file-raid.pdf" target="_blank">CH 38</a>,
+    <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/file-integrity.pdf" target="_blank">CH 45</a>
+  </td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>
+    <a href="https://dl.acm.org/doi/10.1145/248209.237154" target="_blank">Rio</a>
+  </td>
+  </tr>
+-->
+
+  <!--
+  <tr>
+  <td align=center>12/4</td>
+  <td><i>(No lecture, work on project)</i></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  </tr>
+  -->
+
+  <!--
+  <tr>
+  <td align=center>12/9</td>
+  <td><a href="lectures/rpc.pdf">RPC, NFS</a></td>
+  <td>Chapter 11.9</td>
+  <td><a href="hw/hw4.html">Homework 4 Out</a></td>
+  <td><a href="projects/vm.html">Project 3 Out</a></td>
+  </tr>
+  -->
+
+  <!--
+  <tr>
+  <td align=center>3/5</td>
+  <td>(Monday)</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td><font color="red">Project 2 Due</font></td>
+  </tr>
+  -->
+
+  <!-- virtual machines -->
+  <!-- OS structure -->
+
+  <!--
+  <tr>
+  <td align=center>11/25</td>
+  <td><noa href="lectures/org.pdf">OS Structure</a></td>
+  <td>Browse Chapters 3, 15, 20, 21, 22,<br>Appendices <a href="http://cs-www.cs.yale.edu/homes/avi/os-book/osc/FreeBSD.pdf">A (FreeBSD)</a>, <a href="http://cs-www.cs.yale.edu/homes/avi/os-book/osc/maCHpdf">B (Mach)</a></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  </tr>
+  -->
+
+  <!--
+  <tr>
+  <td align=center></td>
+  <td bgcolor="#00AA00"><font color="white">Thanksgiving Holiday</font></td>
+  <td><a href="http://www.butterball.com">Butterball</a></td>
+  <td>&nbsp</td>
+  <td>&nbsp</td>
+  </tr>
+  -->
+
+  <!--
+  <tr>
+  <td align=center>5/28</td>
+  <td><noa href="lectures/metadata.pdf">Rio, Journaling, and Soft Updates</a></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td><a href="projects/vm.html">Project 3 Out</a></td>
+  </tr>
+  -->
+
+<!---
+  <tr>
+  <td align="center">11/29</td>
+  <td>Distributed Systems (<a href="slides/25-distributed_fs.pdf" target="_blank">slides</a>)</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>
+    <a href="https://dl.acm.org/doi/10.1145/2830903.2830905" target="_blank">Security</a>
+  </td>
+  </tr>
+-->
+
+  <!--
+  <tr>
+  <td align=center>6/2</td>
+  <td><noa href="lectures/ccied.pdf"><i>TBD</i></a></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  </tr>
+  -->
+
+<!--
+  <tr>
+  <td align="center">12/1</td>
+  <td>Security (<a href="slides/26-security_intro.pdf" target="_blank">slides</a>)</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>
+    <a href="https://ieeexplore.ieee.org/abstract/document/1631939" target="_blank">Reliability & Security</a>
+  </td>
+  </tr>
+-->
+
+  <!--
+  -->
+  <tr>
+  <td align="center">12/9</td>
+  <td>OS Research</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td><del>MP 4: Due</del> extended</td>
+  <td>
+
+  </td>
+  </tr>
+	  
+  <!--
+  <tr>
+  <td align=center>12/10</td>
+  <td><i>(Saturday)</i></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td><font color="red">Project 3 Due</font></td>
+  </tr>
+  -->
+
+  <tr>
+  <td align="center">12/16</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td><font color="red">MP 4: Due</font></td>
+  <td>
+
+  </td>
+  </tr>
+  </tbody></table>
+  </center>
+
+
+
+
+    <h2>Grading</h2>
+    <p>
+      The course will involve 5 machine problems, several homeworks, a midterm, and a final.
+      Unless otherwise noted by the instructor, all work in this course is to be completed independently.
+      If you are ever uncertain of how to complete an assignment,
+       you can go to office hours or engage in high-level discussions
+       about the problem with your classmates on the Piazza boards.
+    </p>
+
+    <p>
+      Grades will be assigned as follows:
+    </p>
+
+    <ul>
+        <li> <i>Machine Problems:</i> 5 MPs will collectively account for 50% of the grade, divided into 4%, 12%, 12%, 12%, and 10%. <b>All MPs should be solved individually.</b> <b>No late submissions are allowed.</b></li>
+        <li> <i>Midterm:</i> The midterm will be worth 20% of your grade.</li>
+        <li> <i>Final:</i> A final exam will be worth 20% of your grade.</li>
+        <li> <i>Participation:</i> Accounts for 10%. Includes Piazza and in-class discussion.</li>
+        <li> <i>4 Credit Section Only:</i> If you are registered for the four credit version of this course, you will be required to complete and 
+		<a href="https://docs.google.com/document/d/1i824NZ22QsIMRU4-6lf8IFa1ghgmvgY-DsLf_IcPaxo/edit" target="_blank">summarize</a> weekly literature readings that are relevant to the subject matter being discussed in class. Satisfactory completion of these readings will be necessary to receive full credit in homework and participation.</li>
+    </ul>
+
+    <h2>Course Expectations</h2>
+
+    <p>
+      The expectations for the course are that students will attend every class, do any readings assigned for class, and actively and constructively participate in class discussions. Class participation will be a measure of contributing to the discourse both in class, through discussion and questions, and outside of class through contributing and responding to the Piazza forum.
+    </p>
+
+    <p>
+      Out of respect for your classmates, I ask that you turn off all laptops, tablets, and phone screens for the duration of each class!
+    </p>
+
+    <p>
+      More information about course requirements will be made available leading up to the start of classes
+    </p>
+
+    <h2>Ethics Statement</h2>
+
+    <p>
+      This course will include topics related computer security and privacy. As part of this investigation we may cover technologies whose abuse could infringe on the rights of others. As computer scientists, we rely on the ethical use of these technologies. Unethical use includes circumvention of an existing security or privacy mechanisms for any purpose, or the dissemination, promotion, or exploitation of vulnerabilities of these services. Any activity outside the letter or spirit of these guidelines will be reported to the proper authorities and may result in dismissal from the class and possibly more severe academic and legal sanctions.
+    </p>
+
+    <h2>Academic Integrity Policy</h2>
+
+    <p>
+      The University of Illinois at Urbana-Champaign Student Code should also be considered as a part of this syllabus.
+      Students should pay particular attention to Article 1, Part 4: Academic Integrity.
+      Read the Code at the following URL: <a class="paperlink" href="http://studentcode.illinois.edu/" target="_blank">http://studentcode.illinois.edu/</a>.
+    </p>
+    <p>
+      Academic dishonesty may result in a failing grade.
+      Every student is expected to review and abide by the Academic Integrity Policy:
+      <a class="paperlink" href="http://studentcode.illinois.edu/" target="_blank">http://studentcode.illinois.edu/</a>.
+      Ignorance is not an excuse for any academic dishonesty.
+      It is your responsibility to read this policy to avoid any misunderstanding.
+      Do not hesitate to ask the instructor(s) if you are ever in doubt about what constitutes plagiarism,
+      cheating, or any other breach of academic integrity.
+    </p>
+
+    <h2>Students with Disabilities</h2>
+
+    <p>
+      To obtain disability-related academic adjustments and/or auxiliary aids,
+      students with disabilities must contact the course instructor and the as soon as possible.
+      To insure that disability-related concerns are properly addressed from the beginning,
+      students with disabilities who require assistance to participate in this class should
+      contact Disability Resources and Educational Services (DRES)
+      and see the instructor as soon as possible.
+      If you need accommodations for any sort of disability,
+      please speak to me after class, or make an appointment to see me,
+      or see me during my office hours. DRES provides students with academic accommodations,
+      access, and support services.
+      To contact DRES you may visit 1207 S. Oak St., Champaign, call 333-4603 (V/TDD),
+      or e-mail a message to <a href="mailto:disability@uiuc.edu">disability@uiuc.edu</a>.
+      Please refer to <a class="paperlink" href="http://www.disability.illinois.edu/" target="_blank">http://www.disability.illinois.edu/</a>.
+    </p>
+
+    <h2>Emergency Response Recommendations</h2>
+    <p>
+      Emergency response recommendations can be found at the following website:
+      <a class="paperlink" href="http://police.illinois.edu/emergency-preparedness/" target="_blank">http://police.illinois.edu/emergency-preparedness/</a>.
+        I encourage you to review this website and the campus building floor plans website
+        within the first 10 days of class: <a class="paperlink" href="http://police.illinois.edu/emergency-preparedness/building-emergency-action-plans/" target="_blank">http://police.illinois.edu/emergency-preparedness/building-emergency-action-plans/</a>.
+    </p>
+
+    <h2>Family Educational Rights and Privacy Act (FERPA)</h2>
+
+    <p>
+      Any student who has suppressed their directory information pursuant to
+      Family Educational Rights and Privacy Act (FERPA) should self-identify
+      to the instructor to ensure protection of the privacy of their attendance
+      in this course.
+      See <a class="paperlink" href="http://registrar.illinois.edu/ferpa" target="_blank">http://registrar.illinois.edu/ferpa</a> for more information on FERPA.
+    </p>
+
+    <h2>CS Values and Code of Conduct</h2>
+    <p>
+    All members of the Illinois Computer Science department -- faculty, staff, and students -- are expected to adhere to the
+            <a href="https://cs.illinois.edu/about/values" target="_blank">CS Values and Code of Conduct</a>.
+        <a href="https://cs.illinois.edu/about/cs-cares" target="_blank">The CS CARES Committee</a> is available to serve as a resource
+            to help people who are concerned about or experience a potential violation of the Code.
+        If you experience such issues, <a href="https://cs.illinois.edu/about/cs-cares/contact" target="_blank">please contact the CS CARES Committee</a>.
+        I am also available for issues related to this class.
+    </p>
+
+    <h2>Credit</h2>
+
+    <p>
+      The course is designed by <a class="paperlink" href="https://adambates.org/" target="_blank">Professor Adam Bates</a>
+      who taught it during 2017--2019.
+    </p>
+
+    <div class="footer">
+        <hr><a href="mailto:tyxu@illinois.edu">tyxu@illinois.edu</a>
+    </div>
+
+</body>
+
+</html>
