@@ -229,7 +229,7 @@
 
   <tr>
   <td align="center">2/12</td>
-  <td>Paging, TLB(<a href="slides/06.pdf">tentative slides</a>)
+  <td>Paging, TLB(<a href="slides/06.pdf">slides</a>)
  </td>
   <td>
      <a href="https://pages.cs.wisc.edu/~remzi/OSTEP/vm-paging.pdf">CH 18</a>,
@@ -242,20 +242,26 @@
 
   <tr>
   <td align="center">2/17</td>
-  <td>
+  <td>TLBs & More Page Tables(<a href="slides/07.pdf">tentative slides</a>)
  </td>
   <td>
+     <a href="https://pages.cs.wisc.edu/~remzi/OSTEP/vm-tlbs.pdf">CH 19</a>,
+     <a href="https://pages.cs.wisc.edu/~remzi/OSTEP/vm-smalltables.pdf">CH 20</a>
   </td>
   <td></td>
   <td>
+     <a href="https://tianyin.github.io/pub/emt.pdf">New Translation Arch</a> (Due 2/24, 2pm CT)
   </td>
   </tr>
 
   <tr>
   <td align="center">2/19</td>
-  <td>
+  <td>Swapping, Linux VM System
  </td>
   <td>
+    <a href="https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys.pdf">CH 21</a>,
+    <a href="https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys-policy.pdf">CH 22</a>,
+    <a href="https://pages.cs.wisc.edu/~remzi/OSTEP/vm-complete.pdf">CH 23</a>
   </td>
   <td></td>
   <td>
@@ -274,12 +280,23 @@
   </tr>
 
   <tr>
+  <td align="center">2/25</td>
+  <td bgcolor="#FF0000">Wed before 2/26 Lecture
+ </td>
+  <td>
+  </td>
+  <td bgcolor="#FF0000">MP1 Due, 11:59pm CT</td>
+  <td>
+  </td>
+  </tr>
+
+  <tr>
   <td align="center">2/26</td>
   <td>
  </td>
   <td>
   </td>
-  <td bgcolor="#FF0000">MP1 Due</td>
+  <td></td>
   <td>
   </td>
   </tr>
@@ -337,11 +354,22 @@
   </tr>
 
   <tr>
+  <td align="center">3/23</td>
+  <td bgcolor="#FF0000">Mon before 3/24 Lecture
+ </td>
+  <td>
+  </td>
+  <td bgcolor="#FF0000">MP2 Due, 11:59pm CT</td>
+  <td>
+  </td>
+  </tr>
+
+  <tr>
   <td align="center">3/24</td>
   <td> Midterm Review</td>
   <td>&nbsp;</td>
-  <td bgcolor="#FF0000">MP2 Due</td>
-  <td> </td>
+  <td></td>
+  <td></td>
   </tr>
 
   <tr>
@@ -393,10 +421,21 @@
   </tr>
 
   <tr>
+  <td align="center">4/15</td>
+  <td bgcolor="#FF0000">Wed before 4/16 Lecture
+ </td>
+  <td>
+  </td>
+  <td bgcolor="#FF0000">MP3 Due, 11:59pm CT</td>
+  <td>
+  </td>
+  </tr>
+
+  <tr>
   <td align="center">4/16</td>
   <td bgcolor="#FFCCCB">MP4 Walkthrough</td>
   <td>&nbsp;</td>
-  <td bgcolor="#FF0000">MP3 Due</td>
+  <td></td>
   <td> </td>
   </tr>
 
@@ -436,7 +475,7 @@
   <td align="center">5/5</td>
   <td></td>
   <td>&nbsp;</td>
-  <td bgcolor="#FF0000">MP4 Due</td>
+  <td bgcolor="#FF0000">MP4 Due, 11:59pm CT</td>
   <td> </td>
   </tr>
 
@@ -453,6 +492,12 @@
   </tbody></table>
   </center>
 
+    <h2>Misc Resources</h2>
+      Some auxiliary material that students may find useful.
+      <ul>
+	<li><i>VM, Paging, MMU:</i> An informative <a href="https://www.youtube.com/watch?v=B6tJxvYBNrU">YT video</a>. Note: there’s a small mistake at approx the 9:35mark. The video says that on a TLB miss the PTE is found by walking the page table data structure, the physical address is computed and then accessed, and the PTE is also inserted into the TLB. That sequence is incorrect. As discussed in the class, the TLB miss handler finds the PTE, inserts the PTE into the TLB, and then restarts the instruction. The restarted instruction now gets a TLB hit, computes the physical address, and then accesses it.</li>
+	<li><i>Kernel Debugging by Siyuan:</i> (<a href="slides/kernel-debugging.pdf">slides</a>; <a href="https://illinois.zoom.us/rec/share/7wP7-YVbRJQi_l6tDEItfz6KJYEH9EgHJWrT6jvQAftqpngYcKvBClgrQVthmWGN.IboJ0jorhJZ6Czv7">recording</a>)
+      </ul>
 
     <h2>Grading</h2>
     <p>
