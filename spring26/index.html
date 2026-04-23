@@ -465,7 +465,7 @@
 
   <tr>
   <td align="center">4/21</td>
-  <td>Journaling & LFS(<a href="slides/18.pdf">tentative slides</a>)</td>
+  <td>Journaling & LFS(<a href="slides/18.pdf">slides</a>)</td>
   <td>
     <a href="https://pages.cs.wisc.edu/~remzi/OSTEP/file-journaling.pdf">CH 42</a>,
     <a href="https://pages.cs.wisc.edu/~remzi/OSTEP/file-lfs.pdf">CH 43</a>
@@ -478,8 +478,11 @@
 
   <tr>
   <td align="center">4/23</td>
-  <td></td>
-  <td>&nbsp;</td>
+  <td>LFS & COW file systems(<a href="slides/19.pdf">tentative slides</a>)</td>
+  <td>
+    <a ref="https://pages.cs.wisc.edu/~remzi/OSTEP/file-lfs.pdf">CH 43</a>,
+    <a ref="https://afterhoursacademic.com/wafl/">blog on WAFL</a>
+  </td>
   <td> </td>
   <td> </td>
   </tr>
@@ -535,6 +538,7 @@
     <h2>Misc Resources</h2>
       Some auxiliary material that students may find useful.
       <ul>
+        <li><i>WAFL paper:</i> An easy to read <a href="https://www.cs.princeton.edu/courses/archive/fall04/cos318/docs/netapp.pdf">paper about a foundational COW file system</a>.</li>
 	<li><i>VM, Paging, MMU:</i> An informative <a href="https://www.youtube.com/watch?v=B6tJxvYBNrU">YT video</a>. Note: there’s a small mistake at approx the 9:35mark. The video says that on a TLB miss the PTE is found by walking the page table data structure, the physical address is computed and then accessed, and the PTE is also inserted into the TLB. That sequence is incorrect. As discussed in the class, the TLB miss handler finds the PTE, inserts the PTE into the TLB, and then restarts the instruction. The restarted instruction now gets a TLB hit, computes the physical address, and then accesses it.</li>
 	<li><i>Kernel Debugging by Siyuan:</i> (<a href="slides/kernel-debugging.pdf">slides</a>; <a href="https://illinois.zoom.us/rec/share/7wP7-YVbRJQi_l6tDEItfz6KJYEH9EgHJWrT6jvQAftqpngYcKvBClgrQVthmWGN.IboJ0jorhJZ6Czv7">recording</a>)
       </ul>
