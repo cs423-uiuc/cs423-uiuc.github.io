@@ -1,0 +1,30 @@
+
+.readings table {
+    border-collapse: separate; border-spacing: 0px 5px
+}
+
+td.date {
+    font-weight: bold;
+    nofont-size: 12pt;
+    novertical-align: top;
+    text-align: center;
+    width: 40px;
+    nomargin-right: 5x;
+    nomargin-left: 5x;
+    padding-left: 5px;
+    padding-right: 5px;
+    noborder: 10px;
+    border-spacing: 10px;
+    margin-bottom: 4px;
+    background: #E8E8E8;
+    background: #F0F0F0;
+
+    -moz-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 12px;
+}
+
+td.papers {
+    width: 100%;
+}
