@@ -249,7 +249,7 @@ make -j`nproc` LOCALVERSION=-$NETID
   option will break the build. To fix this, you can apply the patch present in the qemu-script repo:
 
 ```bash
-patch -p1 ../qemu-script/0001-kbuild-force-std-gnu89.patch
+patch -p1 < ../qemu-script/0001-kbuild-force-std-gnu89.patch
 ```
 
 Upon successful compilation, you will have new kernel image (a file called
